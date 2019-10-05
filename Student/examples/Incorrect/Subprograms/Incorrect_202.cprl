@@ -1,0 +1,10 @@
+var   x : Integer;
+
+procedure inc(var n : Integer) is
+begin
+   n := n + 1;
+end inc;
+
+begin
+   inc(5);   // actual parameter passed to a var parameter must be a variable
+end.

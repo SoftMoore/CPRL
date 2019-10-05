@@ -1,0 +1,22 @@
+// The following should generate errors
+
+// Test String literal not closed
+"String with no closing quote
+
+// Test Char literal not closed
+'
+
+// Test Char literal with more than one character
+'ab'
+
+// Test Char literal with no characters
+''
+
+// Test invalid escaped char
+'\x'
+
+// Test three single quotes
+'''
+
+// Test EOF reached before closing quote
+"
