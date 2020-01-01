@@ -16,7 +16,6 @@ public class InternalCompilerException extends RuntimeException
      */
     public InternalCompilerException(Position position, String errorMessage)
       {
-        super("*** Internal Compiler Error near line " + position.getLineNumber()
-            + ", character " + position.getCharNumber() + ":\n    " + errorMessage);
+        super("*** Internal Compiler Error near line " + position + ":\n    " + errorMessage);
       }
   }

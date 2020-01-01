@@ -25,8 +25,7 @@ public class TestSource
                 else if (c != '\r')
                     System.out.print((char) c);
 
-                System.out.println("\t" + source.getCharPosition().getLineNumber()
-                                 + "\t" + source.getCharPosition().getCharNumber());
+                System.out.println("\t" + source.getCharPosition());
 
                 source.advance();
               }

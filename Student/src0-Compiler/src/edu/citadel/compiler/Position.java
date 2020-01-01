@@ -62,6 +62,6 @@ public final class Position
     @Override
     public String toString()
       {
-        return "Line " + lineNumber + ", Character " + charNumber;
+        return "line " + lineNumber + ", character " + charNumber;
       }
   }

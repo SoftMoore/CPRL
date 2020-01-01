@@ -18,17 +18,15 @@ public class TestByteUtil
 
         do
           {
-            System.out.print("Enter a value for n (0 to stop): ");
+            System.out.print("Enter a value for integer n (0 to stop): ");
             String line = in.readLine();
             n = Integer.parseInt(line);
 
             System.out.println("n = " + n);
 
             bytes = ByteUtil.intToBytes(n);
-            System.out.print("bytes[] = [ " + bytes[0]);
-            for (int i = 1;  i < bytes.length;  ++i)
-                System.out.print(", " + bytes[i]);
-            System.out.println(" ]");
+            System.out.println("bytes[] = [" + bytes[0] + ", " + bytes[1] + ", "
+                                             + bytes[2] + ", " + bytes[3] + "]");
 
             n2 = ByteUtil.bytesToInt(bytes[0], bytes[1], bytes[2], bytes[3]);
             System.out.println("n2 = " + n2);
@@ -40,7 +38,7 @@ public class TestByteUtil
 
         do
           {
-            System.out.print("Enter a letter or a numeric value for c (z to stop): ");
+            System.out.print("Enter a letter or a numeric value for character c (z to stop): ");
             String line = in.readLine();
             
             if (line != null && line.length() > 0)
@@ -56,7 +54,7 @@ public class TestByteUtil
                     System.out.println("c = " + c);
 
                     bytes = ByteUtil.charToBytes(c);
-                    System.out.println("bytes[] = [ " + bytes[0] + ", " + bytes[1] + " ]");
+                    System.out.println("bytes[] = [" + bytes[0] + ", " + bytes[1] + "]");
 
                     c2 = ByteUtil.bytesToChar(bytes[0], bytes[1]);
                     System.out.println("c2 = " + c2);
@@ -70,7 +68,7 @@ public class TestByteUtil
                     System.out.println("c = " + c);
 
                     bytes = ByteUtil.charToBytes(c);
-                    System.out.println("bytes[] = [ " + bytes[0] + ", " + bytes[1] + " ]");
+                    System.out.println("bytes[] = [" + bytes[0] + ", " + bytes[1] + "]");
 
                     c2 = ByteUtil.bytesToChar(bytes[0], bytes[1]);
                     System.out.println("c2 = " + c2);
