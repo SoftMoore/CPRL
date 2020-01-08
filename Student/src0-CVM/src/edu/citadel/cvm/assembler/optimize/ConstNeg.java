@@ -31,8 +31,7 @@ public class ConstNeg implements Optimization
         if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.NEG)
             return;
 
-        String arg0 = inst0.getArg().getText();
-        int constValue = Integer.parseInt(arg0);
+        int constValue = ((InstructionOneArg) inst0).argToInt();
         int negValue   = -constValue;
             
         // make sure that the NEG instruction does not have any labels

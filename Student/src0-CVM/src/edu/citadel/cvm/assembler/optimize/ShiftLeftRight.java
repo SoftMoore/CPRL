@@ -31,9 +31,7 @@ public class ShiftLeftRight implements Optimization
         if (symbol0 != Symbol.LDCINT)
             return;
           
-        String arg0 = inst0.getArg().getText();
-        int shiftAmount = OptimizationUtil.getShiftAmount(Integer.parseInt(arg0));
-
+        int shiftAmount = OptimizationUtil.getShiftAmount(((InstructionOneArg) inst0).argToInt());
         if (shiftAmount > 0)
           {
             // make sure that inst1 does not have any labels
