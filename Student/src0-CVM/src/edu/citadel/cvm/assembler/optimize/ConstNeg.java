@@ -3,7 +3,7 @@ package edu.citadel.cvm.assembler.optimize;
 
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
-import edu.citadel.cvm.assembler.ast.Instruction;
+import edu.citadel.cvm.assembler.ast.*;
 
 import java.util.List;
 
@@ -27,21 +27,22 @@ public class ConstNeg implements Optimization
         Symbol symbol0 = inst0.getOpCode().getSymbol();
         Symbol symbol1 = inst1.getOpCode().getSymbol();
 
-        if (symbol0 == Symbol.LDCINT && symbol1 == Symbol.NEG)
-          {
-            String arg0 = inst0.getArg().getText();
-            int constValue = Integer.parseInt(arg0);
-            int negValue   = -constValue;
-            
-            // make sure that the NEG instruction does not have any labels
-            List<Token> inst1Labels = inst1.getLabels();
-            if (inst1Labels == null || inst1Labels.size() == 0)
-              {
-                inst0.getArg().setText(Integer.toString(negValue));
+        // quick check that we have LDCINT followed by NEG
+        if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.NEG)
+            return;
 
-                // remove the NEG instruction
-                instructions.remove(instNum + 1);
-              }            
-          }
+        String arg0 = inst0.getArg().getText();
+        int constValue = Integer.parseInt(arg0);
+        int negValue   = -constValue;
+            
+        // make sure that the NEG instruction does not have any labels
+        List<Token> inst1Labels = inst1.getLabels();
+        if (inst1Labels.isEmpty())
+          {
+            inst0.getArg().setText(Integer.toString(negValue));
+
+            // remove the NEG instruction
+            instructions.remove(instNum + 1);
+          }            
       }
   }

@@ -3,13 +3,7 @@ package edu.citadel.cvm.assembler.optimize;
 
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
-import edu.citadel.cvm.assembler.ast.Instruction;
-import edu.citadel.cvm.assembler.ast.InstructionBG;
-import edu.citadel.cvm.assembler.ast.InstructionBGE;
-import edu.citadel.cvm.assembler.ast.InstructionBL;
-import edu.citadel.cvm.assembler.ast.InstructionBLE;
-import edu.citadel.cvm.assembler.ast.InstructionBNZ;
-import edu.citadel.cvm.assembler.ast.InstructionBZ;
+import edu.citadel.cvm.assembler.ast.*;
 
 import java.util.List;
 
@@ -44,7 +38,7 @@ public class BranchingReduction implements Optimization
         
         Symbol symbol0 = inst0.getOpCode().getSymbol();
         Symbol symbol1 = inst1.getOpCode().getSymbol();
-        
+
         // make sure that we have a conditional branch followed by BR
         // instruction, and that the label argument for the conditional
         // branch immediately follows the BR instruction.
@@ -67,21 +61,6 @@ public class BranchingReduction implements Optimization
       }
 
 
-    /**
-     * Combines the lists of labels into a single list.
-     */
-    private static List<Token> combineLabels(List<Token> labels1, List<Token> labels2)
-      {
-        if (labels1 == null)
-            return labels2;
-        else 
-          {
-            labels1.addAll(labels2);
-            return labels1;
-          }
-      }
-    
-    
     /**
      * Returns true if the symbol is a conditional branch; that is,
      * if the symbol is one of BNZ, BZ, BG, BGE, BL, or BLE.  
@@ -135,5 +114,22 @@ public class BranchingReduction implements Optimization
           }
 
         return false;
+      }
+
+
+    /**
+     * Combines the lists of labels into a single list.
+     */
+    public static List<Token> combineLabels(List<Token> labels1, List<Token> labels2)
+      {
+        if (labels1.isEmpty())
+            return labels2;
+        else if (labels2.isEmpty())
+            return labels1;
+        else 
+          {
+            labels1.addAll(labels2);
+            return labels1;
+          }
       }
   }

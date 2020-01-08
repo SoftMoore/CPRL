@@ -2,11 +2,7 @@ package edu.citadel.cvm.assembler.optimize;
 
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
-import edu.citadel.cvm.assembler.ast.Instruction;
-import edu.citadel.cvm.assembler.ast.InstructionLDCB0;
-import edu.citadel.cvm.assembler.ast.InstructionLDCB1;
-import edu.citadel.cvm.assembler.ast.InstructionLDCINT0;
-import edu.citadel.cvm.assembler.ast.InstructionLDCINT1;
+import edu.citadel.cvm.assembler.ast.*;
 
 import java.util.List;
 
@@ -23,11 +19,11 @@ public class LoadSpecialConstants implements Optimization
     public void optimize(List<Instruction> instructions, int instNum)
       {
         Instruction inst = instructions.get(instNum);
-
         Symbol symbol = inst.getOpCode().getSymbol();
+
         if (symbol == Symbol.LDCINT)
           {
-            String arg    = inst.getArg().getText();
+            String arg = inst.getArg().getText();
             List<Token> labels = inst.getLabels();
 
             if (arg.equals("0"))
@@ -47,7 +43,7 @@ public class LoadSpecialConstants implements Optimization
           }
         else if (symbol == Symbol.LDCB)
           {
-            String arg    = inst.getArg().getText();
+            String arg = inst.getArg().getText();
             List<Token> labels = inst.getLabels();
 
             if (arg.equals("0"))

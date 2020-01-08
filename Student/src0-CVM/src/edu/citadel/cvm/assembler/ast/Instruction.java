@@ -17,19 +17,19 @@ import java.io.*;
  */
 public abstract class Instruction extends AST
   {
-    // maps label text (type String) to an address (type Integer)
-    // note that the label text always includes the colon (:) at the end
-    private static Map<String, Integer> labelMap = new HashMap<String, Integer>();
+    // Maps label text (type String) to an address (type Integer).
+    // Note that the label text always includes the colon (:) at the end.
+    protected static Map<String, Integer> labelMap = new HashMap<>();
 
-    // maps identifier text (type String) to a stack address (type Integer)
-    private static Map<String, Integer> idMap = new HashMap<String, Integer>();
+    // Maps identifier text (type String) to a stack address (type Integer).
+    protected static Map<String, Integer> idMap = new HashMap<>();
 
-    // initialize address for identifiers (e.g., used in DEFINT)
+    // Initialize address for identifiers (e.g., used in DEFINT).
     private static int idAddress = Constants.BYTES_PER_FRAME;
 
     private List<Token> labels;
     private Token opCode;
-    private Token arg;
+    protected Token arg;
 
     private int address;
 
@@ -61,27 +61,23 @@ public abstract class Instruction extends AST
 
 
     /**
-     * Sets the memory address for an instruction.  Also defines
-     * the label values if the instruction has labels.
+     * Sets the memory address and defines label values for an instruction.
      */
     public void setAddress(int address) throws ConstraintException
       {
         this.address = address;
 
         // define addresses for labels
-        if (labels != null)
+        for (Token label : labels)
           {
-            for (Token label : labels)
+            if (labelMap.containsKey(label.getText()))
               {
-                if (labelMap.containsKey(label.getText()))
-                  {
-                    String errorMsg  = "This label has already been defined.";
-                    throw error(label.getPosition(), errorMsg);
-                  }
-                else
-                    labelMap.put(label.getText(), Integer.valueOf(address));
+                String errorMsg  = "This label has already been defined.";
+                throw error(label.getPosition(), errorMsg);
               }
-          }
+            else
+                labelMap.put(label.getText(), Integer.valueOf(address));
+              }
       }
 
 
@@ -95,7 +91,7 @@ public abstract class Instruction extends AST
 
 
     /**
-     * map the text of the identifier token to an address on the stack
+     * Map the text of the identifier token to an address on the stack.
      */
     public void defineIdAddress(Token identifier, int size) throws ConstraintException
       {
@@ -150,83 +146,20 @@ public abstract class Instruction extends AST
 
 
     /**
-     * If this instruction has labels, this method checks that each
-     * label has a value defined in the label map.  This method should
-     * not be called for an instruction before method setAddress().
+     * Checks that each label has a value defined in the label map.  This method
+     * should not be called for an instruction before method setAddress().
      * @throws ConstraintException if the instruction has a label that
      *         is not defined in the label map.
      */
     protected void checkLabels() throws ConstraintException
       {
-        if (labels != null)
+        for (Token label : labels)
           {
-            for (Token label : labels)
+            if (!labelMap.containsKey(label.getText()))
               {
-                if (!labelMap.containsKey(label.getText()))
-                  {
-                    String errorMsg = "label \"" + label.getText() + "\" has not been defined.";
-                    throw error(label.getPosition(), errorMsg);
-                  }
+                String errorMsg = "label \"" + label.getText() + "\" has not been defined.";
+                throw error(label.getPosition(), errorMsg);
               }
-          }
-      }
-
-
-    /**
-     * This method is called by instructions that have an argument that
-     * references a label.  It verifies that the referenced label exists.
-     */
-    protected void checkLabelArgDefined() throws ConstraintException
-      {
-        assert arg != null : "label argument can't be null";
-
-        if (arg.getSymbol() != Symbol.identifier)
-          {
-            String errorMsg = "expecting a label identifier but found " + arg.getSymbol();
-            throw error(arg.getPosition(), errorMsg);
-          }
-
-        String label = arg.getText() + ":";
-        if (!labelMap.containsKey(label))
-          {
-            String errorMsg = "label \"" + arg.getText() + "\" has not been defined.";
-            throw error(arg.getPosition(), errorMsg);
-          }
-      }
-
-
-    /**
-     * This method is called by instructions that have an argument that references
-     * an identifier.  It verifies that the referenced identifier exists.
-     */
-    protected void checkIdArgDefined() throws ConstraintException
-      {
-        assert arg != null : "argument can't be null";
-        assert arg.getSymbol() == Symbol.identifier :
-            "expecting an identifier but found " + arg.getSymbol();
-
-        if (!idMap.containsKey(arg.getText()))
-          {
-            String errorMsg = "identifier \"" + arg.getText() + "\" has not been defined.";
-            throw error(arg.getPosition(), errorMsg);
-          }
-      }
-
-
-    /**
-     * This method is called by instructions to verify the type of its argument.  
-     */
-    protected void checkArgType(Symbol argType) throws ConstraintException
-      {
-        if (arg == null)
-          {
-            String errorMsg = "This opcode requires an argument.";
-            throw error(opCode.getPosition(), errorMsg);
-          }
-        else if (arg.getSymbol() != argType)
-          {
-            String errorMsg = "Invalid type for argument -- should be " + argType;
-            throw error(arg.getPosition(), errorMsg);
           }
       }
 
@@ -246,30 +179,6 @@ public abstract class Instruction extends AST
         Integer labelAddress = (Integer) labelMap.get(labelId);
 
         return (labelAddress.intValue() - address);
-      }
-
-
-    /**
-     * Returns the argument as converted to an integer.  Valid
-     * only for instructions with arguments of type intLiteral.
-     */
-    public int argToInt()
-      {
-        assert getArg().getSymbol() == Symbol.intLiteral :
-            "can't convert argument to an integer";
-        return Integer.parseInt(getArg().getText());
-      }
-
-
-    /**
-     * Returns the argument as converted to a byte.  Valid
-     * only for instructions with arguments of type intLigeral.
-     */
-    public byte argToByte()
-      {
-        assert getArg().getSymbol() == Symbol.intLiteral :
-            "can't convert argument to a byte";
-        return Byte.parseByte(getArg().getText());
       }
 
 

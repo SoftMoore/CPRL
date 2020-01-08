@@ -3,11 +3,9 @@ package edu.citadel.cvm.assembler.optimize;
 
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
-import edu.citadel.cvm.assembler.ast.Instruction;
-import edu.citadel.cvm.assembler.ast.InstructionSHL;
+import edu.citadel.cvm.assembler.ast.*;
 
 import java.util.List;
-import java.util.LinkedList;
 
 
 /*
@@ -36,43 +34,36 @@ public class ShiftLeft implements Optimization
         Symbol symbol1 = inst1.getOpCode().getSymbol();
         Symbol symbol2 = inst2.getOpCode().getSymbol();
 
-        if (OptimizationUtil.isConstAndVar(symbol0, symbol1, symbol2))
+        // quick check that we have LDCINT, LDLADDR, and LOADW
+        if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.LDLADDR || symbol2 != Symbol.LOADW)
+              return;
+
+        String arg0 = inst0.getArg().getText();
+        int shiftAmount = OptimizationUtil.getShiftAmount(Integer.parseInt(arg0));
+
+        if (shiftAmount > 0)
           {
-            String arg0 = inst0.getArg().getText();
-            int shiftAmount = OptimizationUtil.getShiftAmount(Integer.parseInt(arg0));
+            Symbol symbol3 = inst3.getOpCode().getSymbol();
 
-            if (shiftAmount > 0)
+            if (symbol3 == Symbol.MUL)
               {
-                Symbol symbol3 = inst3.getOpCode().getSymbol();
-
-                if (symbol3 == Symbol.MUL)
-                  {
-                    // replace MUL by SHL
-                    Token shlToken = new Token(Symbol.SHL);
-                    List<Token> labels = inst3.getLabels();
-                    String argStr = Integer.toString(shiftAmount);
-                    Token argToken = new Token(Symbol.intLiteral, argStr);
-                    Instruction shlInst = new InstructionSHL(labels, shlToken, argToken);
-                    instructions.set(instNum + 3, shlInst);
-                  }
-                else
-                    return;
-
-                // copy labels from inst0 to inst1 before removing it
-                List<Token> inst0Labels = inst0.getLabels();
-
-                if (inst0Labels != null)
-                  {
-                    List<Token> inst1Labels = inst1.getLabels();
-                    if (inst1Labels == null)
-                        inst1Labels = new LinkedList<>();
-
-                    inst1Labels.addAll(inst0Labels);
-                  }
-
-                // remove the LDCINT instruction
-                instructions.remove(instNum);
+                // replace MUL by SHL
+                Token shlToken = new Token(Symbol.SHL);
+                List<Token> labels = inst3.getLabels();
+                String argStr = Integer.toString(shiftAmount);
+                Token argToken = new Token(Symbol.intLiteral, argStr);
+                Instruction shlInst = new InstructionSHL(labels, shlToken, argToken);
+                instructions.set(instNum + 3, shlInst);
               }
+            else
+                return;
+
+            // copy labels from inst0 to inst1 before removing it
+            List<Token> inst1Labels = inst1.getLabels();
+            inst1Labels.addAll(inst0.getLabels());
+    
+            // remove the LDCINT instruction
+            instructions.remove(instNum);
           }
       }
   }

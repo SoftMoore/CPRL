@@ -16,7 +16,7 @@ public class Scanner
     private Symbol   symbol;
     private Position position;
     private String   text;
-    
+
     private StringBuilder scanBuffer;
 
     /** maps strings to opcode symbols */
@@ -335,16 +335,16 @@ public class Scanner
     private char scanEscapedChar() throws ScannerException, IOException
       {
         // assumes that source.getChar() is a backslash character
-        assert (char) source.getChar() == '\\' : 
+        assert (char) source.getChar() == '\\' :
             "scanEscapedChar(): check for escape character ('\\') at position " + getPosition();
 
         // Need to save current position for error reporting.
         Position backslashPosition = source.getCharPosition();
-        
+
         source.advance();
         checkGraphicChar(source.getChar());
         char c = (char) source.getChar();
-        
+
         source.advance();  // leave source at second character following the backslash
 
         switch (c)
@@ -483,6 +483,6 @@ public class Scanner
     private void checkEOF() throws ScannerException
       {
         if (source.getChar() == Source.EOF)
-            throw new ScannerException(getPosition(), "Unexpected end of file");
+            throw error("Unexpected end of file");
       }
   }

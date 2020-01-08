@@ -3,11 +3,10 @@ package edu.citadel.cvm.assembler.optimize;
 
 import java.util.List;
 
+
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
-import edu.citadel.cvm.assembler.ast.Instruction;
-import edu.citadel.cvm.assembler.ast.InstructionSHL;
-import edu.citadel.cvm.assembler.ast.InstructionSHR;
+import edu.citadel.cvm.assembler.ast.*;
 
 
 /**
@@ -28,45 +27,44 @@ public class ShiftLeftRight implements Optimization
         
         Symbol symbol0 = inst0.getOpCode().getSymbol();
 
-        if (symbol0 == Symbol.LDCINT)
+        // quick check that we have LDCINT
+        if (symbol0 != Symbol.LDCINT)
+            return;
+          
+        String arg0 = inst0.getArg().getText();
+        int shiftAmount = OptimizationUtil.getShiftAmount(Integer.parseInt(arg0));
+
+        if (shiftAmount > 0)
           {
-            String arg0 = inst0.getArg().getText();
-            int shiftAmount = OptimizationUtil.getShiftAmount(Integer.parseInt(arg0));
-
-            if (shiftAmount > 0)
+            // make sure that inst1 does not have any labels
+            List<Token> inst1Labels = inst1.getLabels();
+            if (inst1Labels.isEmpty())
               {
-                // make sure that inst1 does not have any labels
-                List<Token> inst1Labels = inst1.getLabels();
-                if (inst1Labels == null || inst1Labels.isEmpty())
-                  {
-                    Symbol symbol1 = inst1.getOpCode().getSymbol();
-                
-                    if (symbol1 == Symbol.MUL)
-                      {
-                        // replace LDCINT with SHL 
-                        Token shlToken = new Token(Symbol.SHL);
-                        List<Token> labels = inst0.getLabels();
-                        String argStr = Integer.toString(shiftAmount);
-                        Token argToken = new Token(Symbol.intLiteral, argStr);
-                        Instruction shlInst = new InstructionSHL(labels, shlToken, argToken);
-                        instructions.set(instNum, shlInst);
-                      }
-                    else if (symbol1 == Symbol.DIV)
-                      {
-                        // replace LDCINT by SHR
-                        Token shrToken = new Token(Symbol.SHR);
-                        List<Token> labels = inst0.getLabels();
-                        String argStr = Integer.toString(shiftAmount);
-                        Token argToken = new Token(Symbol.intLiteral, argStr);
-                        Instruction shrInst = new InstructionSHR(labels, shrToken, argToken);
-                        instructions.set(instNum, shrInst);
-                      }
-                    else
-                        return;
+                List<Token> labels = inst0.getLabels();
+                String argStr = Integer.toString(shiftAmount);
+                Token argToken = new Token(Symbol.intLiteral, argStr);
 
-                    // remove the MUL/DIV instruction
-                    instructions.remove(instNum + 1);
+                Symbol symbol1 = inst1.getOpCode().getSymbol();
+                
+                if (symbol1 == Symbol.MUL)
+                  {
+                    // replace LDCINT with SHL 
+                    Token shlToken = new Token(Symbol.SHL);
+                    Instruction shlInst = new InstructionSHL(labels, shlToken, argToken);
+                    instructions.set(instNum, shlInst);
                   }
+                else if (symbol1 == Symbol.DIV)
+                  {
+                    // replace LDCINT by SHR
+                    Token shrToken = new Token(Symbol.SHR);
+                    Instruction shrInst = new InstructionSHR(labels, shrToken, argToken);
+                    instructions.set(instNum, shrInst);
+                  }
+                else
+                    return;
+
+                // remove the MUL/DIV instruction
+                instructions.remove(instNum + 1);
               }
           }
       }

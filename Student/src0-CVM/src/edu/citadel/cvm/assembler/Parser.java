@@ -70,14 +70,10 @@ public class Parser
 
         try
           {
-            List<Token> labels = null;
-            Token opCode = null;
-            Token arg    = null;
+            List<Token> labels = new LinkedList<>();
 
             if (scanner.getSymbol() == Symbol.labelId)
               {
-                labels = new LinkedList<>();
-
                 while (scanner.getSymbol() == Symbol.labelId)
                   {
                     labels.add(scanner.getToken());
@@ -86,12 +82,11 @@ public class Parser
               }
 
             checkOpCode();
-            opCode = scanner.getToken();
+            Token opCode = scanner.getToken();
             matchCurrentSymbol();
 
-            Symbol symbol = opCode.getSymbol();
-            int numArgs = symbol.getNumArgs();
-
+            Token arg = null;
+            int numArgs = opCode.getSymbol().getNumArgs();
             if (numArgs == 1)
               {
                 arg = scanner.getToken();
