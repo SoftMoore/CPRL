@@ -34,8 +34,7 @@ public class TestScanner
 
             Source  source  = new Source(fileReader);
             Scanner scanner = new Scanner(source);
-
-            Token token;
+            Token   token;
 
             do
               {
@@ -57,7 +56,7 @@ public class TestScanner
 
     public static void printToken(Token token)
       {
-        System.out.printf("line: %2d   char: %2d   token: ", 
+        System.out.printf("line: %2d   char: %2d   token: ",
             token.getPosition().getLineNumber(),
             token.getPosition().getCharNumber());
         if (   token.getSymbol() == Symbol.identifier
@@ -68,7 +67,7 @@ public class TestScanner
         System.out.println(token.getText());
       }
 
-    
+
     private static void printUsageAndExit()
       {
         System.out.println("Usage: java test.cprl.TestScanner <test file>");
