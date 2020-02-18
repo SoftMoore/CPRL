@@ -12,8 +12,11 @@
 // Test Char literal with no characters
 ''
 
-// Test invalid escaped char
+// Test invalid escaped char in Char literal
 '\x'
+
+// Test invalid escaped char in String literal
+"ab\cdef"
 
 // Test three single quotes
 '''

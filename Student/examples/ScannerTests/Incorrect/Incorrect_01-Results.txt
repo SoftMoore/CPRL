@@ -21,11 +21,15 @@ line: 13   char:  1   token: Unknown
 *** Lexical error detected near line 16, character 2:
     Illegal escape character.
 line: 16   char:  1   token: Unknown
-*** Lexical error detected near line 19, character 1:
-    Invalid Char literal.
+*** Lexical error detected near line 19, character 4:
+    Illegal escape character.
 line: 19   char:  1   token: Unknown
 *** Lexical error detected near line 22, character 1:
-    End of file reached before closing quote for Char or String literal.
-line: 22   char:  1   token: End-of-File
+    Invalid Char literal.
+line: 22   char:  1   token: Unknown
+*** Lexical error detected near line 25, character 1:
+    Char and String literals can not extend past end of line.
+line: 25   char:  1   token: Unknown
+line: 26   char:  1   token: End-of-File
 
 ...done
