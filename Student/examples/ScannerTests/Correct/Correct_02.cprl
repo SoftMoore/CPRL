@@ -16,13 +16,12 @@
 ""
 
 // test Char literals with escape characters
-"character with a backspace       (\b) in the middle"
-"character with a tab             (\t) in the middle"
-"character with a newline (lf)    (\n) in the middle"
-"character with a form feed       (\f) in the middle"
-"character with a carriage return (\r) in the middle"
-"character with a double quote    (\") in the middle"
-"character with a single quote    (\') in the middle"
-"character with a backslash pair  (\\) in the middle"
-"character with a cr/lf           (\r\n) in the middle"
+'\b'
+'\t'
+'\n'
+'\f'
+'\r'
+'\"'
+'\''
+'\\'
 
