@@ -368,16 +368,7 @@ public class Scanner
      */
     private Symbol getIdentifierSymbol(String idString)
       {
-        int idLength = idString.length();
-
-        if (idLength < 2 || idLength > 7)     // quick check based on string length
-            return Symbol.identifier;
-
-        Symbol idSymbol = opCodeMap.get(idString.toUpperCase());
-        if (idSymbol != null)
-            return idSymbol;
-        else
-            return Symbol.identifier;
+         return opCodeMap.getOrDefault(idString.toUpperCase(), Symbol.identifier);
       }
 
 
