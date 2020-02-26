@@ -18,8 +18,13 @@ writeln
 // assignment and other punctuation symbols
 :=   (   )   [   ]   ,   :   ;   .
 
-// identifiers and literals
+// identifiers
 x   y   x1   i   aVeryLongIdentifier
+
+// identifiers that look like reserved words (CPRL is case sensitive)
+IF   While   LOOP   End   Array   TYPE
+
+// literals
 1   0   10  123456789
 'a'   'x'   '\"'   '\''
 "a"   "a longer string"   "yet a longer string with a quote (\") in the middle"

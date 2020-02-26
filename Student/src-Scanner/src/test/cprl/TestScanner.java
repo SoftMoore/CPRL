@@ -56,18 +56,22 @@ public class TestScanner
 
     public static void printToken(Token token)
       {
-        System.out.printf("line: %2d   char: %2d   token: ",
+        Symbol symbol = token.getSymbol();
+        
+        System.out.printf("line: %2d   char: %2d   token: ", 
             token.getPosition().getLineNumber(),
             token.getPosition().getCharNumber());
-        if (   token.getSymbol() == Symbol.identifier
-            || token.getSymbol() == Symbol.intLiteral
-            || token.getSymbol() == Symbol.stringLiteral
-            || token.getSymbol() == Symbol.charLiteral)
+        
+        if (symbol.isReservedWord())
+            System.out.print("Reserved Word -> ");
+        else if (symbol == Symbol.identifier    || symbol == Symbol.intLiteral
+              || symbol == Symbol.stringLiteral || symbol == Symbol.charLiteral)
             System.out.print(token.getSymbol().toString() + " -> ");
+        
         System.out.println(token.getText());
       }
 
-
+    
     private static void printUsageAndExit()
       {
         System.out.println("Usage: java test.cprl.TestScanner <test file>");
