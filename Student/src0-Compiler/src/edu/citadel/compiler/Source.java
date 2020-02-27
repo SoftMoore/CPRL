@@ -46,6 +46,10 @@ public final class Source
      */
     public Source(Reader sourceReader) throws IOException
       {
+        // wrap a FileReader or an InputStreamReader in a BufferedReader to improve performance
+        if (sourceReader instanceof FileReader || sourceReader instanceof InputStreamReader)
+            sourceReader = new BufferedReader(sourceReader);
+
         this.sourceReader = sourceReader;
         currentChar = 0;
         lineNumber  = 1;
