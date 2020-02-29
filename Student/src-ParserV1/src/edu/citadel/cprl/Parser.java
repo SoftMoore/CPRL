@@ -178,7 +178,8 @@ public class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>arrayTypeDecl = "type" typeId "=" "array" "[" intConstValue "]" "of" typeName ";" .</code>
+     * <code>arrayTypeDecl = "type" typeId "=" "array" "[" intConstValue "]"
+     *                       "of" typeName ";" .</code>
      */
     public void parseArrayTypeDecl() throws IOException
       {

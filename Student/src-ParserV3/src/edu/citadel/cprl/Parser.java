@@ -270,9 +270,8 @@ public class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>arrayTypeDecl = "type" typeId "=" "array" "[" intConstValue "]" "of" typeName ";" .</code>
-     *
-     * @return the parsed array type declaration.  Returns null if parsing fails.
+     * <code>arrayTypeDecl = "type" typeId "=" "array" "[" intConstValue "]"
+     *                       "of" typeName ";" .</code>
      */
     public ArrayTypeDecl parseArrayTypeDecl() throws IOException
       {
