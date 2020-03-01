@@ -186,6 +186,13 @@ Starting compilation...
     Expecting "end" but found "and" instead.
 Errors detected -- compilation terminated.
 
+Initializing...
+Parsing Incorrect_129.cprl...
+Starting compilation...
+*** Syntax error detected near line 1, character 8:
+    Expecting ":=" but found "," instead.
+Errors detected -- compilation terminated.
+
 __________________________________________________________________
 
 

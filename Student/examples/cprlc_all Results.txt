@@ -164,6 +164,16 @@ Checking constraints...
     Type of operands not permitted for a relational expression.
 Errors detected -- compilation terminated.
 
+Starting compilation for Incorrect_128.cprl...
+*** Syntax error detected near line 8, character 1:
+    Expecting "end" but found "and" instead.
+Errors detected -- compilation terminated.
+
+Starting compilation for Incorrect_129.cprl...
+*** Syntax error detected near line 1, character 8:
+    Expecting ":=" but found "," instead.
+Errors detected -- compilation terminated.
+
 __________________________________________________________________
 
 
