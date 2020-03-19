@@ -140,8 +140,12 @@ Parsing Incorrect_122.cprl...
 Starting compilation...
 *** Lexical error detected near line 8, character 30:
     Illegal escape character.
+*** Syntax error detected near line 8, character 12:
+    Expecting ";" but found "Unknown" instead.
 *** Lexical error detected near line 9, character 30:
     Illegal escape character.
+*** Syntax error detected near line 9, character 12:
+    Expecting ";" but found "Unknown" instead.
 Errors detected -- compilation terminated.
 
 Initializing...
