@@ -51,4 +51,5 @@ public class ArrayTypeDecl extends InitialDecl
     public void checkConstraints()
       {
 // ...
+      }
  }
