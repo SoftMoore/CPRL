@@ -276,6 +276,9 @@ public class Parser
     public ArrayTypeDecl parseArrayTypeDecl() throws IOException
       {
 // ...
+// Hint: If parseConstDecl() returns a null value, create a "dummy" token for the
+//       ConstValue to prevent additional errors associated with a null pointer; e.g.,
+//       Token token = new Token(Symbol.intLiteral, scanner.getPosition(), "0");
       }
 
 
