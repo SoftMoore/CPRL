@@ -132,12 +132,8 @@ Errors detected -- compilation terminated.
 Starting compilation for Incorrect_123.cprl...
 *** Lexical error detected near line 8, character 37:
     Illegal escape character.
-*** Syntax error detected near line 8, character 36:
-    Invalid expression.
 *** Lexical error detected near line 9, character 37:
     Illegal escape character.
-*** Syntax error detected near line 9, character 36:
-    Invalid expression.
 Errors detected -- compilation terminated.
 
 Starting compilation for Incorrect_124.cprl...
