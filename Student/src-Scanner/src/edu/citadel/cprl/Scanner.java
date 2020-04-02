@@ -304,14 +304,7 @@ public class Scanner
               }
             catch (ScannerException e)
               {
-                checkGraphicChar(source.getChar());
-                c = (char) source.getChar();
-
-                if (c == '\'')              // assume bad escape similar to '\x'
-                  {
-                    source.advance();       // move past closing single quote
-                    throw e;                // rethrow the exception
-                  }
+                ErrorHandler.getInstance().reportError(e);
               }
           }
         else if (c == '\'')                 // either '' (empty) or '''; both are invalid
