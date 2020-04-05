@@ -265,7 +265,7 @@ public class Scanner
      */
     private String scanStringLiteral() throws ScannerException, IOException
       {
-// ...   Note: This one is a little tricky!
+// ...
       }
 
 
@@ -282,8 +282,7 @@ public class Scanner
       {
         // assumes that source.getChar() is the opening single quote for the char literal
         assert (char) source.getChar() == '\'' :
-            "scanCharLiteral(): check for opening quote (\') at position "
-            + getPosition();
+            "scanCharLiteral(): check for opening quote (\') at position " + getPosition();
 
         String errorMsg = "Invalid Char literal.";
         clearScanBuffer();
@@ -296,23 +295,16 @@ public class Scanner
         checkGraphicChar(source.getChar());
         c = (char) source.getChar();
 
-        if (c == '\\')                      // escaped character
+        if (c == '\\')                 // escaped character
           {
-            try
-              {
-                scanBuffer.append(scanEscapedChar());
-              }
-            catch (ScannerException e)
-              {
-                ErrorHandler.getInstance().reportError(e);
-              }
+            scanBuffer.append(scanEscapedChar());
           }
-        else if (c == '\'')                 // either '' (empty) or '''; both are invalid
+        else if (c == '\'')            // either '' (empty) or '''; both are invalid
           {
             source.advance();
             c = (char) source.getChar();
 
-            if (c == '\'')                  // three single quotes in a row
+            if (c == '\'')             // three single quotes in a row
                 source.advance();
 
             throw error(errorMsg);
@@ -323,12 +315,12 @@ public class Scanner
             source.advance();
           }
 
-        c = (char) source.getChar();        // should be the closing single quote
+        c = (char) source.getChar();   // should be the closing single quote
         checkGraphicChar(c);
 
-        if (c == '\'')                      // should be the closing single quote
+        if (c == '\'')                 // should be the closing single quote
           {
-            scanBuffer.append(c);           // append the closing quote
+            scanBuffer.append(c);      // append the closing quote
             source.advance();
           }
         else
@@ -375,7 +367,11 @@ public class Scanner
             case '\"' : return "\\\"";   // double quote
             case '\'' : return "\\\'";   // single quote
             case '\\' : return "\\\\";   // backslash
-            default   : throw new ScannerException(backslashPosition, "Illegal escape character.");
+            default   : // report error but return the invalid string
+                        String errMessage = "Illegal escape character.";
+                        ScannerException ex = new ScannerException(backslashPosition, errMessage);
+                        ErrorHandler.getInstance().reportError(ex);
+                        return "\\c";
           }
       }
 
