@@ -21,6 +21,9 @@ public class ProcedureDecl extends SubprogramDecl
       }
 
 
+    // inherited checkConstraints() is sufficient
+
+
     @Override
     public void emit() throws CodeGenException, IOException
       {
