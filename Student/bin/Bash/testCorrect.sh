@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #
-# Test a CPRL program for correct execution
+# Test a CPRL program for correct execution.
+# Assumes that commands cprlc and assemble have already run successfully.
 
 # Command-line arguments are as follows:
 # - %0 : the name of this batch file
