@@ -2,8 +2,7 @@ function f return Integer is
     const big := 9999999999999;   // literal is too large for Integer
     var x : Integer;
 begin
-    x := big;
-    return x;
+    return 5;
 end f;
 
 begin
