@@ -48,7 +48,7 @@ public class FunctionDecl extends SubprogramDecl
     @Override
     public void checkConstraints()
       {
-// ...
+// ...  Hint: See SubprogramDecl
       }
 
 
