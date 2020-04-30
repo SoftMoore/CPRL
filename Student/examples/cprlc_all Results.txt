@@ -285,15 +285,17 @@ Starting compilation for Incorrect_218.cprl...
     Expecting ";" but found ")" instead.
 Errors detected -- compilation terminated.
 
-Initializing...
-Parsing Incorrect_219.cprl...
-Starting compilation...
-Compilation complete.
+Starting compilation for Incorrect_219.cprl...
+Checking constraints...
+*** Constraint error detected near line 4, character 7:
+    Type mismatch for assignment statement.
+Errors detected -- compilation terminated.
 
-Initializing...
-Parsing Incorrect_220.cprl...
-Starting compilation...
-Compilation complete.
+Starting compilation for Incorrect_220.cprl...
+Checking constraints...
+*** Constraint error detected near line 2, character 18:
+    The number "9999999999999" cannot be converted to an integer in CPRL.
+Errors detected -- compilation terminated.
 
 __________________________________________________________________
 
@@ -302,13 +304,13 @@ Incorrect\Arrays
 
 Starting compilation for Incorrect_301.cprl...
 Checking constraints...
-*** Constraint error detected near line 8, character 9:
+*** Constraint error detected near line 9, character 9:
     Type mismatch for assignment statement.
-*** Constraint error detected near line 9, character 11:
-    Index expression must have type Integer.
-*** Constraint error detected near line 10, character 6:
+*** Constraint error detected near line 10, character 11:
     Index expression must have type Integer.
 *** Constraint error detected near line 11, character 6:
+    Index expression must have type Integer.
+*** Constraint error detected near line 12, character 6:
     Index expression must have type Integer.
 Errors detected -- compilation terminated.
 
