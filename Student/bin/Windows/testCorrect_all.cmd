@@ -20,4 +20,4 @@ echo Reasembling all ".asm" files
 echo.
 call assemble_all > nul 2>&1
 
-for %%f in (*.obj) do testCorrect %%~nf
+for %%f in (*.obj) do (call testCorrect %%~nf)
