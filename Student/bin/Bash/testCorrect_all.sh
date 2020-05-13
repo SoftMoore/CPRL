@@ -4,19 +4,19 @@
 # Run testCorrect on all ".obj" files in the current directory
 #
 
-echo Deleting all ".asm" files
+echo Deleting all \".asm\" files
 echo
 rm -f *.asm
 
-echo Deleting all ".obj" files
+echo Deleting all \".obj\" files
 echo
-rm -f *.obj"
+rm -f *.obj
 
-echo Recompiling all ".cprl files
+echo Recompiling all \".cprl\" files
 echo
 cprlc_all.sh >/dev/null 2>&1
 
-echo Reasembling all ".asm" files
+echo Reasembling all \".asm\" files
 echo
 assemble_all.sh >/dev/null 2>&1
 

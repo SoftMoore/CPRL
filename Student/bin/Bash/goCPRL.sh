@@ -2,8 +2,7 @@
 
 #
 # change directory to the compiler project home
-# Note: Run as ". goCPRL.sh" so that the script runs in the current shell.
-# Better yet, simply add goCPRL as an alias in .bashrc
+# Note: Run as ". goCPRL.sh" or "source goCPRL.sh" so that the script runs in the current shell.
 #
 
 source cprl_config.sh

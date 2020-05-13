@@ -32,7 +32,8 @@ else
 fi
 
 # comparing output files
-diff $1.out.tmp $1.out.txt
+echo Comparing files $1.out.tmp and $1.out.txt
+diff --strip-trailing-cr $1.out.tmp $1.out.txt
 if [ $? -ne 0 ]
 then
     echo "*** Test Failed ***"
