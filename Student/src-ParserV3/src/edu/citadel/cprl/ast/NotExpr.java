@@ -20,6 +20,7 @@ public class NotExpr extends UnaryExpr
     public NotExpr(Token operator, Expression operand)
       {
         super(operator, operand);
+        setType(Type.Boolean);
         assert operator.getSymbol() == Symbol.notRW :
             "NotExpr: operator is not the reserved word \"not\".";
       }

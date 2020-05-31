@@ -30,6 +30,7 @@ public class LogicalExpr extends BinaryExpr
     public LogicalExpr(Expression leftOperand, Token operator, Expression rightOperand)
       {
         super(leftOperand, operator, rightOperand);
+        setType(Type.Boolean);
         assert operator.getSymbol().isLogicalOperator() :
             "LogicalExpression: operator is not a logical operator.";
 
@@ -67,8 +68,6 @@ public class LogicalExpr extends BinaryExpr
           {
             ErrorHandler.getInstance().reportError(e);
           }
-
-        setType(Type.Boolean);
       }
 
 
