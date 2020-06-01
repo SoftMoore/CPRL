@@ -31,7 +31,6 @@ public class Variable extends Expression
     public Variable(NamedDecl decl, Position position, List<Expression> indexExprs)
       {
         super(decl.getType(), position);
-
         this.decl       = decl;
         this.indexExprs = indexExprs;
       }
@@ -95,24 +94,24 @@ public class Variable extends Expression
                {
                  expr.checkConstraints();
 
-                // check that the variable's type is an array type
+                 // check that the type of the index expression is Integer
+                 if (expr.getType() != Type.Integer)
+                   {
+                     String errorMsg = "Index expression must have type Integer.";
+                     throw error(expr.getPosition(), errorMsg);
+                   }
+
+                 // check that the variable's type is an array type
                 if (getType() instanceof ArrayType)
                   {
                     // Applying the index effectively changes the
-                    // variable's type to the base type of the array
+                    // variable's type to the element type of the array
                     ArrayType type = (ArrayType) getType();
                     setType(type.getElementType());
                   }
                 else
                   {
                     String errorMsg = "Index expression not allowed; not an array";
-                    throw error(expr.getPosition(), errorMsg);
-                  }
-
-                // check that the type of the index expression is Integer
-                if (expr.getType() != Type.Integer)
-                  {
-                    String errorMsg = "Index expression must have type Integer.";
                     throw error(expr.getPosition(), errorMsg);
                   }
               }
@@ -141,6 +140,29 @@ public class Variable extends Expression
         // For an array, at this point the base address of the array
         // is on the top of the stack.  We need to replace it by the
         // sum: base address + offset
-// ...
+        Type declType = decl.getType();
+
+        for (Expression expr : indexExprs)
+          {
+            ArrayType arrayType = (ArrayType) declType;
+
+            // emit code to compute the index value
+            expr.emit();
+
+            // multiply by size of array base type to get offset
+            if (arrayType.getElementType().getSize() != 1)
+              {
+                emit("LDCINT " + arrayType.getElementType().getSize());
+                emit("MUL");
+              }
+
+            // Note: No code to perform bounds checking for the index to
+            // ensure that the index is >= 0 and < number of elements.
+
+            // add offset to the base address
+            emit("ADD");
+
+            declType = arrayType.getElementType();
+          }
       }
   }
