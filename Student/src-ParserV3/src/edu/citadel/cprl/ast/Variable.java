@@ -140,29 +140,20 @@ public class Variable extends Expression
         // For an array, at this point the base address of the array
         // is on the top of the stack.  We need to replace it by the
         // sum: base address + offset
-        Type declType = decl.getType();
 
-        for (Expression expr : indexExprs)
-          {
-            ArrayType arrayType = (ArrayType) declType;
+// ...
+// Big Hint: When you apply an index, you should be generating code based on the element type.
 
-            // emit code to compute the index value
-            expr.emit();
+// Loop over the index expressions.
 
-            // multiply by size of array base type to get offset
-            if (arrayType.getElementType().getSize() != 1)
-              {
-                emit("LDCINT " + arrayType.getElementType().getSize());
-                emit("MUL");
-              }
+// Outside the loop declare
+// Type declType = decl.getType();
 
-            // Note: No code to perform bounds checking for the index to
-            // ensure that the index is >= 0 and < number of elements.
+// Inside the loop at the top, cast declType to a variable named arrayType (of type ArrayType).
 
-            // add offset to the base address
-            emit("ADD");
+// Instead of emitting based on getType().getSize(), emit based on arrayType.getElementType().getSize().
 
-            declType = arrayType.getElementType();
+// At the end of the loop, set declType to arrayType.getElementType().
           }
       }
   }
