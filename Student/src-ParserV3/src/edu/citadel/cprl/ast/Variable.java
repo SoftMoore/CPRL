@@ -94,13 +94,6 @@ public class Variable extends Expression
                {
                  expr.checkConstraints();
 
-                 // check that the type of the index expression is Integer
-                 if (expr.getType() != Type.Integer)
-                   {
-                     String errorMsg = "Index expression must have type Integer.";
-                     throw error(expr.getPosition(), errorMsg);
-                   }
-
                  // check that the variable's type is an array type
                 if (getType() instanceof ArrayType)
                   {
@@ -112,6 +105,13 @@ public class Variable extends Expression
                 else
                   {
                     String errorMsg = "Index expression not allowed; not an array";
+                    throw error(expr.getPosition(), errorMsg);
+                  }
+
+                // check that the type of the index expression is Integer
+                if (expr.getType() != Type.Integer)
+                  {
+                    String errorMsg = "Index expression must have type Integer.";
                     throw error(expr.getPosition(), errorMsg);
                   }
               }
