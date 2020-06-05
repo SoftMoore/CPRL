@@ -1,0 +1,20 @@
+const n := 5;
+var   x : Integer;
+
+procedure f(b : Boolean) is
+begin
+
+   if b then
+      return n;
+   else
+      writeln -1;
+   end if;
+
+end f;
+
+begin
+
+   f(true);       // incorrect argument type
+   write x;
+
+end.

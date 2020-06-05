@@ -297,6 +297,18 @@ Checking constraints...
     The number "9999999999999" cannot be converted to an integer in CPRL.
 Errors detected -- compilation terminated.
 
+Starting compilation for Incorrect_221.cprl...
+Checking constraints...
+*** Constraint error detected near line 17, character 6:
+    Parameter type mismatch.
+Errors detected -- compilation terminated.
+
+Starting compilation for Incorrect_222.cprl...
+Checking constraints...
+*** Constraint error detected near line 8, character 14:
+    Return expression allowed only within functions.
+Errors detected -- compilation terminated.
+
 __________________________________________________________________
 
 
