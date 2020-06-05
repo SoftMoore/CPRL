@@ -4,12 +4,9 @@ rem
 rem Run testCorrect on all ".obj" files in the current directory
 rem
 
-echo Deleting all ".asm" files
+echo Deleting all ".asm" and ".obj" files
 echo.
 del *.asm
-
-echo Deleting all ".obj" files
-echo.
 del *.obj
 
 echo Recompiling all ".cprl files
