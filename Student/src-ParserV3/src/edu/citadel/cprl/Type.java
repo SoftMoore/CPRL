@@ -78,7 +78,7 @@ public class Type
 
     /**
      * Returns true if and only if this type is a scalar type.
-     * The scalar types in CPTL are Integer, Boolean, and Char. 
+     * The scalar types in CPRL are Integer, Boolean, and Char.
      */
     public boolean isScalar()
       {
