@@ -28,7 +28,7 @@ public class NamedValue extends Variable
     @Override
     public void emit() throws CodeGenException, IOException
       {
-        super.emit();             // leaves address of variable on top of stack
-        emitLoadInst(getType());  // replaces address by value at that address
+        super.emit();              // leaves address of variable on top of stack
+        emitLoadInst(getType());   // replaces address by value at that address
       }
   }

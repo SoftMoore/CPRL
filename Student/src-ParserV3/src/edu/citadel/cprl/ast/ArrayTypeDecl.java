@@ -14,17 +14,15 @@ import edu.citadel.cprl.Type;
 public class ArrayTypeDecl extends InitialDecl
   {
     private ConstValue numElements;
-    private Type       elemType;     // type of elements in the array
 
 
     /**
-     * Construct an ArrayTypeDecl with its identifier and element type.
-     * Note that the index type is always Integer in CPRL.
+     * Construct an ArrayTypeDecl with its identifier, element type, and number
+     * of elements.  Note that the index type is always Integer in CPRL.
      */
     public ArrayTypeDecl(Token typeId, Type elemType, ConstValue numElements)
       {
         super(typeId, new ArrayType(typeId.getText(), numElements.getLiteralIntValue(), elemType));
-        this.elemType    = elemType;
         this.numElements = numElements;
       }
 
@@ -35,15 +33,6 @@ public class ArrayTypeDecl extends InitialDecl
     public ConstValue getNumElements()
       {
 // ...
-      }
-
-
-    /**
-     * Returns the type of the elements in the array.
-     */
-    public Type getElementType()
-      {
- // ...
       }
 
 

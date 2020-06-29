@@ -98,7 +98,7 @@ public class LogicalExpr extends BinaryExpr
             // for the compound "and" expression
             emit("LDCB " + FALSE);
           }
-        else if (operatorSym == Symbol.orRW)
+        else   // operatorSym must be Symbol.orRW
           {
             // if false, branch to code that will evaluate right operand
             emit("BZ " + L1);
@@ -106,10 +106,6 @@ public class LogicalExpr extends BinaryExpr
             // otherwise, place "true" back on top of stack as value
             // for the compound "or" expression
             emit("LDCB " + TRUE);
-          }
-        else
-          {
-            throw new CodeGenException(operator.getPosition(), "Invalid logical operator.");
           }
 
         // branch to code following the expression

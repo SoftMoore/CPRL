@@ -17,7 +17,7 @@ public abstract class AST
     // Number of spaces to print before opcode
     private static final String SPACES = "   ";
 
-    private static PrintWriter out = null;
+    private static PrintWriter out = new PrintWriter(System.out);
 
     // current label number for control flow
     private static int currentLabelNum = -1;
@@ -33,7 +33,7 @@ public abstract class AST
 
 
     /**
-     * Creates/returns a new constraint exception with the specified position and message.
+     * Creates/returns a new constraint exception with the specified position and message. 
      */
     protected ConstraintException error(Position errorPos, String errorMsg)
       {

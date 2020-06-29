@@ -71,7 +71,7 @@ public class ElsifPart extends AST
 
             if (booleanExpr.getType() != Type.Boolean)
               {
-                String errorMsg = "An \"elsif\" condition should have type Boolean";
+                String errorMsg = "An \"elsif\" condition should have type Boolean.";
                 throw error(booleanExpr.getPosition(), errorMsg);
               }
           }

@@ -10,7 +10,6 @@ import edu.citadel.cprl.ScopeLevel;
 import edu.citadel.cprl.Type;
 
 import java.util.List;
-import java.util.Collections;
 import java.io.IOException;
 
 
@@ -33,15 +32,6 @@ public class Variable extends Expression
         super(decl.getType(), position);
         this.decl       = decl;
         this.indexExprs = indexExprs;
-      }
-
-    /**
-     * Construct a variable with a reference to its declaration,
-     * its position, and an empty list of index expressions.
-     */
-    public Variable(NamedDecl decl, Position position)
-      {
-        this(decl, position, Collections.emptyList());
       }
 
 
