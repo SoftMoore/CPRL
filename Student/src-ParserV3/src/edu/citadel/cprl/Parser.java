@@ -896,7 +896,7 @@ public class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>functionCall = functId ( actualParameters )? .</code>
+     * <code>functionCall = funcId ( actualParameters )? .</code>
      *
      * @return the parsed function call.  Returns null if parsing fails.
      */

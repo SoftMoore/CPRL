@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * The abstract syntax tree node for a not expression.  A not expression is a unary
- * expression of the form "not expr".  A simple example would be "not isEmtpy()".
+ * expression of the form "not expr".  A simple example would be "not isEmpty()".
  */
 public class NotExpr extends UnaryExpr
   {
