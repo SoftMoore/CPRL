@@ -25,8 +25,7 @@ public class NegationExpr extends UnaryExpr
       {
         super(operator, operand);
         setType(Type.Integer);
-        assert operator.getSymbol() == Symbol.minus :
-            "NegationExpr: operator is not \"-\" operator.";
+        assert operator.getSymbol() == Symbol.minus : "Operator is not \"-\" operator.";
       }
 
 

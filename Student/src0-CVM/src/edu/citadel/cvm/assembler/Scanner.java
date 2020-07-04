@@ -16,7 +16,7 @@ public class Scanner
     private Symbol   symbol;
     private Position position;
     private String   text;
-
+    
     private StringBuilder scanBuffer;
 
     /** maps strings to opcode symbols */
@@ -177,8 +177,8 @@ public class Scanner
       {
         // assumes that source.getChar() is the first character of the identifier
         assert Character.isLetter((char) source.getChar()) :
-            "scanIdentifier(): check identifier start for letter at position "
-            + getPosition();
+            "arg.positionheck identifier start for letter at position "
+            + getPosition() + ".";
 
         clearScanBuffer();
 
@@ -203,8 +203,7 @@ public class Scanner
       {
         // assumes that source.getChar() is the first digit of the integer literal
         assert Character.isDigit((char) source.getChar()) :
-            "scanIntegerLiteral(): check integer literal start for digit at position "
-            + getPosition();
+            "Check integer literal start for digit at position " + getPosition() + ".";
 
         clearScanBuffer();
 
@@ -222,8 +221,7 @@ public class Scanner
     private void skipComment() throws ScannerException, IOException
       {
         // assumes that source.getChar() is the leading ';'
-        assert (char) source.getChar() == ';' :
-            "skipComment(): check for ';' to start comment";
+        assert (char) source.getChar() == ';' : "Check for ';' to start comment.";
 
         skipToEndOfLine();
         source.advance();
@@ -243,8 +241,7 @@ public class Scanner
       {
         // assumes that source.getChar() is the opening double quote for the string literal
         assert (char) source.getChar() == '\"' :
-            "scanStringLiteral(): check for opening quote (\") at position "
-            + getPosition();
+            "Check for opening quote (\") at position " + getPosition() + ".";
 
         clearScanBuffer();
 
@@ -283,7 +280,7 @@ public class Scanner
       {
         // assumes that source.getChar() is the opening single quote for the char literal
         assert (char) source.getChar() == '\'' :
-            "scanCharLiteral(): check for opening quote (\') at position " + getPosition();
+            "Check for opening quote (\') at position " + getPosition() + ".";
 
         clearScanBuffer();
 
@@ -335,16 +332,16 @@ public class Scanner
     private char scanEscapedChar() throws ScannerException, IOException
       {
         // assumes that source.getChar() is a backslash character
-        assert (char) source.getChar() == '\\' :
-            "scanEscapedChar(): check for escape character ('\\') at position " + getPosition();
+        assert (char) source.getChar() == '\\' : 
+            "Check for escape character ('\\') at position " + getPosition() + ".";
 
         // Need to save current position for error reporting.
         Position backslashPosition = source.getCharPosition();
-
+        
         source.advance();
         checkGraphicChar(source.getChar());
         char c = (char) source.getChar();
-
+        
         source.advance();  // leave source at second character following the backslash
 
         switch (c)

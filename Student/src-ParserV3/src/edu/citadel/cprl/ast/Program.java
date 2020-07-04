@@ -4,7 +4,6 @@ package edu.citadel.cprl.ast;
 import edu.citadel.compiler.CodeGenException;
 
 import java.io.IOException;
-import java.util.List;
 
 
 /**
@@ -39,8 +38,8 @@ public class Program extends AST
     public void checkConstraints()
       {
         // This method should never be called with null declarative and statement parts.
-        assert declPart != null : "declPart should never be null";
-        assert stmtPart != null : "stmtPart should never be null";
+        assert declPart != null : "declPart should never be null.";
+        assert stmtPart != null : "stmtPart should never be null.";
 
         declPart.checkConstraints();
         stmtPart.checkConstraints();
@@ -82,8 +81,7 @@ public class Program extends AST
             emit("PROGRAM " + varLength);
 
         // emit branch over subprograms only if necessary
-        List<SubprogramDecl> subprogDecls = declPart.getSubprogramDecls();
-        if (!subprogDecls.isEmpty())
+        if (!declPart.getSubprogramDecls().isEmpty())
           {
             // jump over code for subprograms
             emit("BR " + L1);

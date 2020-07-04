@@ -77,19 +77,18 @@ public abstract class Expression extends AST
      * is emitted.  The method defined in this class works correctly for Boolean
      * constants, Boolean named values, and "not" expressions.  It should be
      * overridden for other Boolean expression ASTs (e.g., RelationalExpr).
-     * 
+     *
      * @param condition  the condition that determines the branch to be emitted.
      * @param label      the label for the branch destination.
-     * 
-     * @throws IOException                if there is a problem writing to the target file.
-     * @throws CodeGenException           if the method is unable to generate appropriate
-     *                                    target code. 
+     *
+     * @throws IOException       if there is a problem writing to the target file.
+     * @throws CodeGenException  if the method is unable to generate appropriate target code.
      */
     public void emitBranch(boolean condition, String label) throws CodeGenException, IOException
       {
         // default behavior unless overridden; correct for constants and named values
-        assert exprType == Type.Boolean : "Expression type is not Boolean";
-        
+        assert exprType == Type.Boolean : "Expression type is not Boolean.";
+
         emit();  // leaves boolean value on top of stack
         emit(condition ? "BNZ " + label : "BZ " + label);
       }

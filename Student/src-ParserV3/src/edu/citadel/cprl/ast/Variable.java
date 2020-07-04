@@ -94,7 +94,7 @@ public class Variable extends Expression
                   }
                 else
                   {
-                    String errorMsg = "Index expression not allowed; not an array";
+                    String errorMsg = "Index expression not allowed; not an array.";
                     throw error(expr.getPosition(), errorMsg);
                   }
 

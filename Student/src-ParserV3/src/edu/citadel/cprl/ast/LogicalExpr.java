@@ -31,8 +31,7 @@ public class LogicalExpr extends BinaryExpr
       {
         super(leftOperand, operator, rightOperand);
         setType(Type.Boolean);
-        assert operator.getSymbol().isLogicalOperator() :
-            "LogicalExpression: operator is not a logical operator.";
+        assert operator.getSymbol().isLogicalOperator() : "Operator is not a logical operator.";
 
         L1 = getNewLabel();
         L2 = getNewLabel();

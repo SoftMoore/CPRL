@@ -95,9 +95,9 @@ public abstract class Instruction extends AST
      */
     public void defineIdAddress(Token identifier, int size) throws ConstraintException
       {
-        assert identifier != null : "id can't be null";
+        assert identifier != null : "Identifier can't be null.";
         assert identifier.getSymbol() == Symbol.identifier :
-            "expecting an identifier but found " + identifier.getSymbol();
+            "Expecting an identifier but found " + identifier.getSymbol() + ".";
 
         if (idMap.containsKey(identifier.getText()))
           {
@@ -117,11 +117,11 @@ public abstract class Instruction extends AST
      */
     protected int getIdAddress(Token identifier)
       {
-        assert identifier != null : "id can't be null";
+        assert identifier != null : "Identifier can't be null.";
         assert identifier.getSymbol() == Symbol.identifier :
-            "expecting an identifier but found " + identifier.getSymbol();
+            "Expecting an identifier but found " + identifier.getSymbol() + ".";
         assert idMap.containsKey(identifier.getText()) :
-            "identifier " + identifier.getText() + " not found";
+            "Identifier " + identifier.getText() + " not found.";
 
         Integer idAddress = (Integer) idMap.get(identifier.getText());
 
@@ -174,7 +174,7 @@ public abstract class Instruction extends AST
         String labelId = labelArg.getText() + ":";
 
         assert labelMap.containsKey(labelId) :
-            "label " + labelArg.getText() + " not found";
+            "Label " + labelArg.getText() + " not found.";
 
         Integer labelAddress = (Integer) labelMap.get(labelId);
 
@@ -192,8 +192,8 @@ public abstract class Instruction extends AST
 
     protected void assertOpCode(Symbol opCode)
       {
-        assert this.opCode != null : "null opCode";
-        assert this.opCode.getSymbol() == opCode : "wrong opCode";
+        assert this.opCode != null : "Null opCode.";
+        assert this.opCode.getSymbol() == opCode : "Wrong opCode.";
       }
 
 

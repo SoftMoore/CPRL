@@ -27,15 +27,6 @@ public class ArrayTypeDecl extends InitialDecl
       }
 
 
-    /**
-     * Returns the number of elements in the array type definition.
-     */
-    public ConstValue getNumElements()
-      {
-// ...
-      }
-
-
     @Override
     public void checkConstraints()
       {

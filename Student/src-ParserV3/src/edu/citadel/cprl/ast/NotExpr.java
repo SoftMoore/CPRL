@@ -22,7 +22,7 @@ public class NotExpr extends UnaryExpr
         super(operator, operand);
         setType(Type.Boolean);
         assert operator.getSymbol() == Symbol.notRW :
-            "NotExpr: operator is not the reserved word \"not\".";
+            "Operator is not the reserved word \"not\".";
       }
 
 

@@ -27,7 +27,7 @@ public class MultiplyingExpr extends BinaryExpr
         super(leftOperand, operator, rightOperand);
         setType(Type.Integer);
         assert operator.getSymbol().isMultiplyingOperator() :
-            "MultiplyingExpr: operator is not a multiplying operator";
+            "Operator is not a multiplying operator.";
       }
 
 

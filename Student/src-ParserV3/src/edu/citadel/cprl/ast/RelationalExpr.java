@@ -32,7 +32,7 @@ public class RelationalExpr extends BinaryExpr
         super(leftOperand, operator, rightOperand);
         setType(Type.Boolean);
         assert operator.getSymbol().isRelationalOperator() :
-            "RelationalExpr: operator is not a relational operator.";
+            "Operator is not a relational operator.";
 
         L1 = getNewLabel();
         L2 = getNewLabel();

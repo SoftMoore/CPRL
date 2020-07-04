@@ -26,8 +26,7 @@ public class AddingExpr extends BinaryExpr
       {
         super(leftOperand, operator, rightOperand);
         setType(Type.Integer);
-        assert operator.getSymbol().isAddingOperator() :
-            "AddingExpr: operator is not an adding operator.";
+        assert operator.getSymbol().isAddingOperator() : "Operator is not an adding operator.";
       }
 
 

@@ -18,7 +18,7 @@ public abstract class InstructionOneArg extends Instruction
     public InstructionOneArg(List<Token> labels, Token opCode, Token arg)
       {
         super(labels, opCode, arg);
-        assert arg != null : "argument can't be null for this instruction";
+        assert arg != null : "Argument can't be null for this instruction.";
       }
 
 
@@ -68,11 +68,11 @@ public abstract class InstructionOneArg extends Instruction
     protected void checkIdArgDefined() throws ConstraintException
       {
         assert arg.getSymbol() == Symbol.identifier :
-            "expecting an identifier but found " + arg.getSymbol();
+            "Expecting an identifier but found " + arg.getSymbol() + ".";
 
         if (!idMap.containsKey(arg.getText()))
           {
-            String errorMsg = "identifier \"" + arg.getText() + "\" has not been defined.";
+            String errorMsg = "Identifier \"" + arg.getText() + "\" has not been defined.";
             throw error(arg.getPosition(), errorMsg);
           }
       }
@@ -85,7 +85,7 @@ public abstract class InstructionOneArg extends Instruction
       {
         if (arg.getSymbol() != argType)
           {
-            String errorMsg = "Invalid type for argument -- should be " + argType;
+            String errorMsg = "Invalid type for argument -- should be " + argType + ".";
             throw error(arg.getPosition(), errorMsg);
           }
       }
@@ -98,7 +98,7 @@ public abstract class InstructionOneArg extends Instruction
     public int argToInt()
       {
         assert getArg().getSymbol() == Symbol.intLiteral :
-            "can't convert argument " + getArg() + " to an integer";
+            "Can't convert argument " + getArg() + " to an integer.";
         return Integer.parseInt(getArg().getText());
       }
 
@@ -110,7 +110,7 @@ public abstract class InstructionOneArg extends Instruction
     public byte argToByte()
       {
         assert getArg().getSymbol() == Symbol.intLiteral :
-            "can't convert argument " + getArg() + " to a byte";
+            "Can't convert argument " + getArg() + " to a byte.";
         return Byte.parseByte(getArg().getText());
       }
 
