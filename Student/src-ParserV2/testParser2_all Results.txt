@@ -189,6 +189,13 @@ Starting compilation...
     Expecting ":=" but found "," instead.
 Errors detected -- compilation terminated.
 
+Initializing...
+Parsing Incorrect_130.cprl...
+Starting compilation...
+*** Syntax error detected near line 6, character 9:
+    Invalid expression.
+Errors detected -- compilation terminated.
+
 __________________________________________________________________
 
 

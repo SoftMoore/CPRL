@@ -18,11 +18,7 @@ public class WritelnStmt extends OutputStmt
       }
 
 
-    @Override
-    public void checkConstraints()
-      {
-// ...
-      }
+    // inherited checkConstraints() method is sufficient
 
 
     @Override

@@ -170,6 +170,11 @@ Starting compilation for Incorrect_129.cprl...
     Expecting ":=" but found "," instead.
 Errors detected -- compilation terminated.
 
+Starting compilation for Incorrect_130.cprl...
+*** Syntax error detected near line 6, character 9:
+    Invalid expression.
+Errors detected -- compilation terminated.
+
 __________________________________________________________________
 
 
