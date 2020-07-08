@@ -920,7 +920,7 @@ public class Parser
         else
           {
             String errorMsg = "Expecting \"" + expectedSymbol + "\" but found \""
-                + scanner.getSymbol() + "\" instead.";
+                            + scanner.getToken() + "\" instead.";
             throw error(errorMsg);
           }
       }
