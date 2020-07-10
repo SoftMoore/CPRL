@@ -42,12 +42,6 @@ public class InstructionCALL extends InstructionOneArg
       }
 
 
-    public int getArg2Size()
-      {
-        return Constants.BYTES_PER_INTEGER;
-      }
-
-
     @Override
     public void emit() throws IOException
       {

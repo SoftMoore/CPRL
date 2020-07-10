@@ -18,7 +18,7 @@ public abstract class InstructionOneArg extends Instruction
     public InstructionOneArg(List<Token> labels, Token opCode, Token arg)
       {
         super(labels, opCode, arg);
-        assert arg != null : "Argument can't be null for this instruction.";
+        assert arg != null : "Argument should never be null for this instruction.";
       }
 
 
@@ -62,24 +62,7 @@ public abstract class InstructionOneArg extends Instruction
 
 
     /**
-     * This method is called by instructions that have an argument that references
-     * an identifier.  It verifies that the referenced identifier exists.
-     */
-    protected void checkIdArgDefined() throws ConstraintException
-      {
-        assert arg.getSymbol() == Symbol.identifier :
-            "Expecting an identifier but found " + arg.getSymbol() + ".";
-
-        if (!idMap.containsKey(arg.getText()))
-          {
-            String errorMsg = "Identifier \"" + arg.getText() + "\" has not been defined.";
-            throw error(arg.getPosition(), errorMsg);
-          }
-      }
-
-
-    /**
-     * This method is called by instructions to verify the type of its argument.  
+     * This method is called by instructions to verify the type of its argument.
      */
     protected void checkArgType(Symbol argType) throws ConstraintException
       {
