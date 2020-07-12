@@ -729,8 +729,7 @@ public class Parser
      */
     private ParserException error(String errMsg)
       {
-        Position errPos = scanner.getToken().getPosition();
-        return new ParserException(errPos, errMsg);
+        return new ParserException(scanner.getPosition(), errMsg);
       }
 
 
@@ -749,8 +748,7 @@ public class Parser
      */
     private InternalCompilerException internalError(String message)
       {
-        Position errorPosition = scanner.getToken().getPosition();
-        return new InternalCompilerException(errorPosition, message);
+        return new InternalCompilerException(scanner.getPosition(), message);
       }
 
 
