@@ -141,8 +141,8 @@ Parsing Incorrect_123.cprl...
 Starting compilation...
 *** Lexical error detected near line 8, character 37:
     Illegal escape character.
-*** Syntax error detected near line 8, character 36:
-    Invalid expression.
+*** Lexical error detected near line 9, character 37:
+    Illegal escape character.
 Errors detected -- compilation terminated.
 
 Initializing...
