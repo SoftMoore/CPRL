@@ -39,7 +39,7 @@ public class CVM
     /** 1K = 2**10 */
     private static final int K = 1024;
 
-    /** virtual machine constant for false */
+    /** default memory size for the virtual machine */
     private static final int DEFAULT_MEMORY_SIZE = 8*K;
 
     /** scanner for handling basic integer I/O */
