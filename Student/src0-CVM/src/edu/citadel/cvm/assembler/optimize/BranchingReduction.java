@@ -32,31 +32,36 @@ public class BranchingReduction implements Optimization
         if (instNum > instructions.size() - 3)
             return;
 
-        Instruction inst0 = instructions.get(instNum);
-        Instruction inst1 = instructions.get(instNum + 1);
-        Instruction inst2 = instructions.get(instNum + 2);
+        Instruction instruction0 = instructions.get(instNum);
+        Instruction instruction1 = instructions.get(instNum + 1);
+        Instruction instruction2 = instructions.get(instNum + 2);
         
-        Symbol symbol0 = inst0.getOpCode().getSymbol();
-        Symbol symbol1 = inst1.getOpCode().getSymbol();
+        Symbol symbol0 = instruction0.getOpCode().getSymbol();
+        Symbol symbol1 = instruction1.getOpCode().getSymbol();
 
         // make sure that we have a conditional branch followed by BR
         // instruction, and that the label argument for the conditional
         // branch immediately follows the BR instruction.
-        if (isConditionalBranch(symbol0) && symbol1 == Symbol.BR
-            && containsLabel(inst2.getLabels(), inst0.getArg()))
+        if (isConditionalBranch(symbol0) && symbol1 == Symbol.BR)
           {
-            // combine labels for instructions 0 and 1
-            List<Token> labels = combineLabels(inst0.getLabels(), inst1.getLabels());
-                
-            // get argument label from inst1
-            Token arg = inst1.getArg();
+            InstructionOneArg inst0 = (InstructionOneArg)instruction0;
+            InstructionOneArg inst1 = (InstructionOneArg)instruction1;
+            
+            if(containsLabel(instruction2.getLabels(), inst0.getArg()))
+              {
+                // combine labels for instructions 0 and 1
+                List<Token> labels = combineLabels(inst0.getLabels(), inst1.getLabels());
 
-            // make the new branch instruction
-            Instruction branchInst = makeDualBranchInst(labels, symbol0, arg);
-            instructions.set(instNum, branchInst);
+                // get argument label from inst1
+                Token arg = inst1.getArg();
+
+                // make the new branch instruction
+                Instruction branchInst = makeDualBranchInst(labels, symbol0, arg);
+                instructions.set(instNum, branchInst);
                 
-            // remove the unconditional branch instruction
-            instructions.remove(instNum + 1);
+                // remove the unconditional branch instruction
+                instructions.remove(instNum + 1);
+              }
           }
       }
 
@@ -67,12 +72,8 @@ public class BranchingReduction implements Optimization
      */
     private static boolean isConditionalBranch(Symbol s)
       {
-        return s == Symbol.BNZ
-             | s == Symbol.BZ
-             | s == Symbol.BG
-             | s == Symbol.BGE
-             | s == Symbol.BL
-             | s == Symbol.BLE;
+        return s == Symbol.BNZ  || s == Symbol.BZ  || s == Symbol.BG
+            || s == Symbol.BGE  || s == Symbol.BL  || s == Symbol.BLE;
       }
 
 

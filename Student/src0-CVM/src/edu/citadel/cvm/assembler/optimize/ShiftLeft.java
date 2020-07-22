@@ -24,32 +24,33 @@ public class ShiftLeft implements Optimization
         if (instNum > instructions.size() - 4)
             return;
 
-        Instruction inst0 = instructions.get(instNum);
-        Instruction inst1 = instructions.get(instNum + 1);
-        Instruction inst2 = instructions.get(instNum + 2);
-        Instruction inst3 = instructions.get(instNum + 3);
+        Instruction instruction0 = instructions.get(instNum);
+        Instruction instruction1 = instructions.get(instNum + 1);
+        Instruction instruction2 = instructions.get(instNum + 2);
+        Instruction instruction3 = instructions.get(instNum + 3);
         
         // quick check that we are dealing with a constant and a variable
-        Symbol symbol0 = inst0.getOpCode().getSymbol();
-        Symbol symbol1 = inst1.getOpCode().getSymbol();
-        Symbol symbol2 = inst2.getOpCode().getSymbol();
+        Symbol symbol0 = instruction0.getOpCode().getSymbol();
+        Symbol symbol1 = instruction1.getOpCode().getSymbol();
+        Symbol symbol2 = instruction2.getOpCode().getSymbol();
 
         // quick check that we have LDCINT, LDLADDR, and LOADW
         if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.LDLADDR || symbol2 != Symbol.LOADW)
               return;
 
+        InstructionOneArg inst0 = (InstructionOneArg)instruction0;
         String arg0 = inst0.getArg().getText();
         int shiftAmount = OptimizationUtil.getShiftAmount(Integer.parseInt(arg0));
 
         if (shiftAmount > 0)
           {
-            Symbol symbol3 = inst3.getOpCode().getSymbol();
+            Symbol symbol3 = instruction3.getOpCode().getSymbol();
 
             if (symbol3 == Symbol.MUL)
               {
                 // replace MUL by SHL
                 Token shlToken = new Token(Symbol.SHL);
-                List<Token> labels = inst3.getLabels();
+                List<Token> labels = instruction3.getLabels();
                 String argStr = Integer.toString(shiftAmount);
                 Token argToken = new Token(Symbol.intLiteral, argStr);
                 Instruction shlInst = new InstructionSHL(labels, shlToken, argToken);
@@ -59,7 +60,7 @@ public class ShiftLeft implements Optimization
                 return;
 
             // copy labels from inst0 to inst1 before removing it
-            List<Token> inst1Labels = inst1.getLabels();
+            List<Token> inst1Labels = instruction1.getLabels();
             inst1Labels.addAll(inst0.getLabels());
     
             // remove the LDCINT instruction

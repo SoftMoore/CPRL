@@ -22,27 +22,28 @@ public class ShiftLeftRight implements Optimization
         if (instNum > instructions.size() - 2)
             return;
 
-        Instruction inst0 = instructions.get(instNum);
-        Instruction inst1 = instructions.get(instNum + 1);
+        Instruction instruction0 = instructions.get(instNum);
+        Instruction instruction1 = instructions.get(instNum + 1);
         
-        Symbol symbol0 = inst0.getOpCode().getSymbol();
+        Symbol symbol0 = instruction0.getOpCode().getSymbol();
 
         // quick check that we have LDCINT
         if (symbol0 != Symbol.LDCINT)
             return;
-          
-        int shiftAmount = OptimizationUtil.getShiftAmount(((InstructionOneArg) inst0).argToInt());
+
+        InstructionOneArg inst0 = (InstructionOneArg)instruction0;        
+        int shiftAmount = OptimizationUtil.getShiftAmount(inst0.argToInt());
         if (shiftAmount > 0)
           {
             // make sure that inst1 does not have any labels
-            List<Token> inst1Labels = inst1.getLabels();
+            List<Token> inst1Labels = instruction1.getLabels();
             if (inst1Labels.isEmpty())
               {
                 List<Token> labels = inst0.getLabels();
                 String argStr = Integer.toString(shiftAmount);
                 Token argToken = new Token(Symbol.intLiteral, argStr);
 
-                Symbol symbol1 = inst1.getOpCode().getSymbol();
+                Symbol symbol1 = instruction1.getOpCode().getSymbol();
                 
                 if (symbol1 == Symbol.MUL)
                   {

@@ -18,11 +18,12 @@ public class LoadSpecialConstants implements Optimization
     @Override
     public void optimize(List<Instruction> instructions, int instNum)
       {
-        Instruction inst = instructions.get(instNum);
-        Symbol symbol = inst.getOpCode().getSymbol();
+        Instruction instruction = instructions.get(instNum);
+        Symbol symbol = instruction.getOpCode().getSymbol();
 
         if (symbol == Symbol.LDCINT)
           {
+            InstructionOneArg inst = (InstructionOneArg)instruction;
             String arg = inst.getArg().getText();
             List<Token> labels = inst.getLabels();
 
@@ -43,6 +44,7 @@ public class LoadSpecialConstants implements Optimization
           }
         else if (symbol == Symbol.LDCB)
           {
+            InstructionOneArg inst = (InstructionOneArg)instruction;
             String arg = inst.getArg().getText();
             List<Token> labels = inst.getLabels();
 

@@ -30,24 +30,27 @@ public class ConstFolding implements Optimization
         if (instNum > instructions.size() - 3)
             return;
 
-        Instruction inst0 = instructions.get(instNum);
-        Instruction inst1 = instructions.get(instNum + 1);
-        Instruction inst2 = instructions.get(instNum + 2);
+        Instruction instruction0 = instructions.get(instNum);
+        Instruction instruction1 = instructions.get(instNum + 1);
+        Instruction instruction2 = instructions.get(instNum + 2);
         
-        Symbol symbol0 = inst0.getOpCode().getSymbol();
-        Symbol symbol1 = inst1.getOpCode().getSymbol();
-        Symbol symbol2 = inst2.getOpCode().getSymbol();
+        Symbol symbol0 = instruction0.getOpCode().getSymbol();
+        Symbol symbol1 = instruction1.getOpCode().getSymbol();
+        Symbol symbol2 = instruction2.getOpCode().getSymbol();
 
         // quick check that we are dealing with two LDCINT instructions
         if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.LDCINT)
             return;
 
         // we are dealing with two constant integers
-        int value0 = ((InstructionOneArg)inst0).argToInt();
-        int value1 = ((InstructionOneArg)inst1).argToInt();
+        InstructionOneArg inst0 = (InstructionOneArg)instruction0;
+        InstructionOneArg inst1 = (InstructionOneArg)instruction1;
+
+        int value0 = inst0.argToInt();
+        int value1 = inst1.argToInt();
 
         // make sure that inst1 and inst2 do not have any labels
-        if (inst1.getLabels().isEmpty() && inst2.getLabels().isEmpty())
+        if (inst1.getLabels().isEmpty() && instruction2.getLabels().isEmpty())
           {
             switch (symbol2)
               {

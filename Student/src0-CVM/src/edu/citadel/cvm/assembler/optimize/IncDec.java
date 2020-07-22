@@ -21,22 +21,23 @@ public class IncDec implements Optimization
         if (instNum > instructions.size() - 2)
             return;
 
-        Instruction inst0 = instructions.get(instNum);
-        Instruction inst1 = instructions.get(instNum + 1);
+        Instruction instruction0 = instructions.get(instNum);
+        Instruction instruction1 = instructions.get(instNum + 1);
 
         // quick check that we have LDCINT
-        Symbol symbol0 = inst0.getOpCode().getSymbol();
+        Symbol symbol0 = instruction0.getOpCode().getSymbol();
         if (symbol0 != Symbol.LDCINT)
             return;
         
+        InstructionOneArg inst0 = (InstructionOneArg)instruction0;
         String arg0 = inst0.getArg().getText();
 
         if (arg0.equals("1"))
           {
-            // Make sure that inst1 does not have any labels
-            if (inst1.getLabels().isEmpty())
+            // Make sure that instruction1 does not have any labels
+            if (instruction1.getLabels().isEmpty())
               {
-                Symbol symbol1 = inst1.getOpCode().getSymbol();
+                Symbol symbol1 = instruction1.getOpCode().getSymbol();
                 
                 if (symbol1 == Symbol.ADD)
                   {

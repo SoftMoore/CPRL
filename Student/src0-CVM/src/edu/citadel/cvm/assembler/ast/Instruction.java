@@ -29,16 +29,14 @@ public abstract class Instruction extends AST
 
     private List<Token> labels;
     private Token opCode;
-    protected Token arg;
 
     private int address;
 
 
-    public Instruction(List<Token> labels, Token opCode, Token arg)
+    public Instruction(List<Token> labels, Token opCode)
       {
         this.labels = labels;
         this.opCode = opCode;
-        this.arg    = arg;
       }
 
 
@@ -51,12 +49,6 @@ public abstract class Instruction extends AST
     public Token getOpCode()
       {
         return opCode;
-      }
-
-
-    public Token getArg()
-      {
-        return arg;
       }
 
 
@@ -197,6 +189,7 @@ public abstract class Instruction extends AST
       }
 
 
+    @Override
     public String toString()
       {
         StringBuffer buffer = new StringBuffer(100);
@@ -209,9 +202,6 @@ public abstract class Instruction extends AST
           }
 
         buffer.append("   " + opCode.getText());
-
-        if (arg != null)
-            buffer.append(" " + arg.getText());
 
         return buffer.toString();
       }

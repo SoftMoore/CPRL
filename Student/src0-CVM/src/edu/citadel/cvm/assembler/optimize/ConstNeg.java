@@ -21,27 +21,27 @@ public class ConstNeg implements Optimization
         if (instNum > instructions.size() - 2)
             return;
 
-        Instruction inst0 = instructions.get(instNum);
-        Instruction inst1 = instructions.get(instNum + 1);
+        Instruction instruction0 = instructions.get(instNum);
+        Instruction instruction1 = instructions.get(instNum + 1);
         
-        Symbol symbol0 = inst0.getOpCode().getSymbol();
-        Symbol symbol1 = inst1.getOpCode().getSymbol();
+        Symbol symbol0 = instruction0.getOpCode().getSymbol();
+        Symbol symbol1 = instruction1.getOpCode().getSymbol();
 
-        // quick check that we have LDCINT followed by NEG
-        if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.NEG)
-            return;
-
-        int constValue = ((InstructionOneArg) inst0).argToInt();
-        int negValue   = -constValue;
-            
-        // make sure that the NEG instruction does not have any labels
-        List<Token> inst1Labels = inst1.getLabels();
-        if (inst1Labels.isEmpty())
+        // check that we have LDCINT followed by NEG
+        if (symbol0 == Symbol.LDCINT || symbol1 == Symbol.NEG)
           {
-            inst0.getArg().setText(Integer.toString(negValue));
+            InstructionOneArg inst0 = (InstructionOneArg)instruction0;
+            int constValue = inst0.argToInt();
+            
+            // make sure that the NEG instruction does not have any labels
+            List<Token> inst1Labels = instruction1.getLabels();
+            if (inst1Labels.isEmpty())
+              {
+                inst0.getArg().setText(Integer.toString(-constValue));
 
-            // remove the NEG instruction
-            instructions.remove(instNum + 1);
-          }            
+                // remove the NEG instruction
+                instructions.remove(instNum + 1);
+              }
+          }
       }
   }

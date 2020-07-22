@@ -15,10 +15,19 @@ import java.util.List;
  */
 public abstract class InstructionOneArg extends Instruction
   {
+    protected Token arg;
+
     public InstructionOneArg(List<Token> labels, Token opCode, Token arg)
       {
-        super(labels, opCode, arg);
+        super(labels, opCode);
+        this.arg = arg;
         assert arg != null : "Argument should never be null for this instruction.";
+      }
+
+
+    public Token getArg()
+      {
+        return arg;
       }
 
 
@@ -88,13 +97,20 @@ public abstract class InstructionOneArg extends Instruction
 
     /**
      * Returns the argument as converted to a byte.  Valid
-     * only for instructions with arguments of type intLigeral.
+     * only for instructions with arguments of type intLiteral.
      */
     public byte argToByte()
       {
         assert getArg().getSymbol() == Symbol.intLiteral :
             "Can't convert argument " + getArg() + " to a byte.";
         return Byte.parseByte(getArg().getText());
+      }
+
+
+    @Override
+    public String toString()
+      {
+        return super.toString() + " " + arg.getText();
       }
 
 

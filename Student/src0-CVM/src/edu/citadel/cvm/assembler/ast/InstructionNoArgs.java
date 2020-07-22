@@ -16,7 +16,7 @@ public abstract class InstructionNoArgs extends Instruction
   {
     public InstructionNoArgs(List<Token> labels, Token opCode)
       {
-        super(labels, opCode, null);
+        super(labels, opCode);
       }
 
 
