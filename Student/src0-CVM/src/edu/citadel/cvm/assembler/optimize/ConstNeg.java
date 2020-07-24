@@ -28,7 +28,7 @@ public class ConstNeg implements Optimization
         Symbol symbol1 = instruction1.getOpCode().getSymbol();
 
         // check that we have LDCINT followed by NEG
-        if (symbol0 == Symbol.LDCINT || symbol1 == Symbol.NEG)
+        if (symbol0 == Symbol.LDCINT && symbol1 == Symbol.NEG)
           {
             InstructionOneArg inst0 = (InstructionOneArg)instruction0;
             int constValue = inst0.argToInt();
