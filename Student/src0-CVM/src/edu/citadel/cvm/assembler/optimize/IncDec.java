@@ -7,7 +7,7 @@ import edu.citadel.cvm.assembler.ast.*;
 import java.util.List;
 
 
-/*
+/**
  * Replaces addition of 1 with increment and subtraction of 1 with decrement.
  * Basically, this class looks for patterns of the form "LDCINT 1, ADD" and
  * replaces it with "INC", and similarly for SUB.

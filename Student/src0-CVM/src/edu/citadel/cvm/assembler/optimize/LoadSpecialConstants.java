@@ -7,7 +7,7 @@ import edu.citadel.cvm.assembler.ast.*;
 import java.util.List;
 
 
-/*
+/**
  * Replaces LDCB 0 with LDCB0, LDCB 1 with LDCB1, LDCINT 0 with LDCINT0, and
  * LDCINT 1 with LDCINT1.  Implementation Note: This optimization must be
  * applied after the other optimizations or else they will need to be rewritten.

@@ -1,6 +1,9 @@
 package edu.citadel.compiler.util;
 
 
+/**
+ * Utility class for formatting strings.
+ */
 public class StringUtil
   {
     /**

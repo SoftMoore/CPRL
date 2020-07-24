@@ -1,6 +1,9 @@
 package edu.citadel.cvm;
 
 
+/**
+ * Class of CVM-related constants.
+ */
 public class Constants
   {
     public static final int BYTES_PER_OPCODE  = 1;

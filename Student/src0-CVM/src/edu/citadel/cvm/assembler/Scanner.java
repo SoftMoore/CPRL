@@ -10,6 +10,9 @@ import java.io.*;
 import java.util.HashMap;
 
 
+/**
+ * Performs lexical analysis for CVM assembly language.
+ */
 public class Scanner
   {
     private Source   source;

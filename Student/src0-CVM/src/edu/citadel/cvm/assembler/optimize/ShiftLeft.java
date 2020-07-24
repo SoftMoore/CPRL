@@ -8,7 +8,7 @@ import edu.citadel.cvm.assembler.ast.*;
 import java.util.List;
 
 
-/*
+/**
  * Replaces multiplication by a power of 2 times a variable with left
  * shift.  Basically, this class looks for patterns of the form
  * "LDCINT 2**n, LDLADDR x, LOADW, MUL" and replaces it with

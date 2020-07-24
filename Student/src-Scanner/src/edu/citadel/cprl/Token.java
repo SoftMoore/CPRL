@@ -5,6 +5,9 @@ import edu.citadel.compiler.AbstractToken;
 import edu.citadel.compiler.Position;
 
 
+/**
+ * Instantiates the generic class AbstractToken for CPRL symbols.
+ */
 public class Token extends AbstractToken<Symbol>
   {
     /**

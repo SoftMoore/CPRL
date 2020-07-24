@@ -1,6 +1,9 @@
 package edu.citadel.compiler.util;
 
 
+/**
+ * Utilities for recognizing binary and hexadecimal digits. 
+ */
 public class CharUtil
   {
     /**

@@ -6,7 +6,7 @@ import edu.citadel.compiler.Position;
 
 
 /**
- * This class encapsulates the properties of a language token
+ * Instantiates the generic class AbstractToken for CVM assembly language symbols.
  */
 public final class Token extends AbstractToken<Symbol>
   {

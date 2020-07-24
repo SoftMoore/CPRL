@@ -1,6 +1,9 @@
 package edu.citadel.cvm.assembler.optimize;
 
 
+/**
+ * Utility class for shift-related optimizations. 
+ */
 public class OptimizationUtil
   {
     /**

@@ -9,6 +9,9 @@ import edu.citadel.compiler.Source;
 import java.io.IOException;
 
 
+/**
+ * Performs lexical analysis for the CPRL programming language.
+ */
 public class Scanner
   {
     private Source   source;

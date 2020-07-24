@@ -7,6 +7,9 @@ import edu.citadel.compiler.util.StringUtil;
 import java.io.*;
 
 
+/**
+ * Translates CVM machine code into CVM assembly language. 
+ */
 public class Disassembler
   {
     private static final String SUFFIX   = ".obj";
