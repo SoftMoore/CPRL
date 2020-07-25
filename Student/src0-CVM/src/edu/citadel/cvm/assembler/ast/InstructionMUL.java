@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction MUL.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction MUL.
  */
 public class InstructionMUL extends InstructionNoArgs
   {

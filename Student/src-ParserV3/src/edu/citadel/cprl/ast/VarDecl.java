@@ -21,7 +21,8 @@ public class VarDecl extends InitialDecl
 
 
     /**
-     * Construct a VarDecl with its list of identifier tokens, type, and scope level
+     * Construct a variable declaration with its list of identifier tokens,
+     * type, and scope level
      */
     public VarDecl(List<Token> identifiers, Type varType, ScopeLevel scopeLevel)
       {

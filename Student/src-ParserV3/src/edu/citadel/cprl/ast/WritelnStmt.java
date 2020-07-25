@@ -12,6 +12,9 @@ import java.io.IOException;
  */
 public class WritelnStmt extends OutputStmt
   {
+    /**
+     * Construct a writeln statement with the list of expressions.
+     */
     public WritelnStmt(List<Expression> expressions)
       {
         super(expressions);

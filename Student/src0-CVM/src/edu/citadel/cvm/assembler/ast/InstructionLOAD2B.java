@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction LOAD2B.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction LOAD2B.
  */
 public class InstructionLOAD2B extends InstructionNoArgs
   {

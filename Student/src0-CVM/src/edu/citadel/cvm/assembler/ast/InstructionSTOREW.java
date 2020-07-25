@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction STOREW.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction STOREW.
  */
 public class InstructionSTOREW extends InstructionNoArgs
   {

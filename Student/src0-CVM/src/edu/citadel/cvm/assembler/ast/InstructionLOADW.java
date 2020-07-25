@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction LOADW.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction LOADW.
  */
 public class InstructionLOADW extends InstructionNoArgs
   {

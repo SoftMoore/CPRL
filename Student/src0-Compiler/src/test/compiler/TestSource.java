@@ -1,9 +1,8 @@
 package test.compiler;
 
 
+import edu.citadel.compiler.Source;
 import java.io.*;
-
-import edu.citadel.compiler.*;
 
 
 public class TestSource

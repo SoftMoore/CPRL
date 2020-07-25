@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction BGE.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction BGE.
  */
 public class InstructionBGE extends InstructionOneArg
   {

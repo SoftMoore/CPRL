@@ -16,6 +16,9 @@ public abstract class OutputStmt extends Statement
     private List<Expression> expressions;
 
 
+    /**
+     * Construct an output statement with the list of expressions. 
+     */
     public OutputStmt(List<Expression> expressions)
       {
         this.expressions = expressions;

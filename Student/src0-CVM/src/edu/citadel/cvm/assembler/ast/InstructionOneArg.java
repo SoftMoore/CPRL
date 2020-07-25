@@ -17,6 +17,10 @@ public abstract class InstructionOneArg extends Instruction
   {
     protected Token arg;
 
+    /**
+     * Construct a one-argument instruction with a list of labels, an opcode,
+     * and an argument.
+     */
     public InstructionOneArg(List<Token> labels, Token opCode, Token arg)
       {
         super(labels, opCode);

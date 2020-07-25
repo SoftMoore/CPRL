@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction DEC.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction DEC.
  */
 public class InstructionDEC extends InstructionNoArgs
   {

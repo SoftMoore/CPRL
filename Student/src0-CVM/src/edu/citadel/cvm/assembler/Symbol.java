@@ -99,7 +99,7 @@ public enum Symbol
 
 
     /**
-     * Constructs a Symbol with its label and 0 arguments.
+     * Construct a symbol with its label and 0 arguments.
      */
     private Symbol(String label)
       {
@@ -109,7 +109,7 @@ public enum Symbol
 
 
     /**
-     * Constructs a Symbol with its label and number of arguments.
+     * Construct a symbol with its label and number of arguments.
      */
     private Symbol(String label, int numArgs)
       {

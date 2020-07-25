@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction GETINT.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction GETINT.
  */
 public class InstructionGETINT extends InstructionNoArgs
   {

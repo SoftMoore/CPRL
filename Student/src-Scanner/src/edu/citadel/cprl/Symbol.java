@@ -89,9 +89,9 @@ public enum Symbol
     // instance fields
     private final String label;
 
-
+    
     /**
-     * Constructs a new Symbol with its label.
+     * Construct a new symbol with its label.
      */
     private Symbol(String label)
       {
@@ -99,11 +99,14 @@ public enum Symbol
       }
 
 
+    /**
+     * Returns true if this symbol is a reserved word.
+     */
     public boolean isReservedWord()
       {
         return this.compareTo(BooleanRW) >=0 && this.compareTo(writelnRW) <= 0;
       }
-
+    
 
     /**
      * Returns true if this symbol can start an initial declaration.

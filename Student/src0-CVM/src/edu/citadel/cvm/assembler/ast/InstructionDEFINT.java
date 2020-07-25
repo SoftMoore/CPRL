@@ -11,8 +11,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language pseudo instruction DEFINT.
+ * This class implements the abstract syntax tree for the assembly
+ * language pseudo instruction DEFINT.
  */
 public class InstructionDEFINT extends InstructionOneArg
   {

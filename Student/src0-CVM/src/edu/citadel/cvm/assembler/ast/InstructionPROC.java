@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction PROC.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction PROC.
  */
 public class InstructionPROC extends InstructionOneArg
   {

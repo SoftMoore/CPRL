@@ -11,8 +11,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction SHL.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction SHL.
  */
 public class InstructionSHL extends InstructionOneArg
   {

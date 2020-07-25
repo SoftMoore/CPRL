@@ -18,8 +18,7 @@ public class ReadStmt extends Statement
 
 
     /**
-     * Construct an input statement with the specified
-     * variable for storing the input.
+     * Construct a read statement with the specified variable for storing the input.
      */
     public ReadStmt(Variable variable)
       {

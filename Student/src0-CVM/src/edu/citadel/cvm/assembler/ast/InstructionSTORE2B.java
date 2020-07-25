@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction STORE2B.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction STORE2B.
  */
 public class InstructionSTORE2B extends InstructionNoArgs
   {

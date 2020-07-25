@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction BL.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction BL.
  */
 public class InstructionBL extends InstructionOneArg
   {

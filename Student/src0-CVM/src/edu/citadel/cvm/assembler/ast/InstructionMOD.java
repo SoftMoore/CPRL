@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction MOD.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction MOD.
  */
 public class InstructionMOD extends InstructionNoArgs
   {

@@ -23,6 +23,9 @@ public class Parser
     private Scanner scanner;
 
 
+    /**
+     * Construct a parser with the specified scanner.
+     */
     public Parser(Scanner scanner)
       {
         this.scanner = scanner;

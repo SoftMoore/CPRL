@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction STORE.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction STORE.
  */
 public class InstructionSTORE extends InstructionOneArg
   {

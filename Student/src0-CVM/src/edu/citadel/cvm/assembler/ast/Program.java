@@ -11,8 +11,7 @@ import java.util.*;
 
 
 /**
- * This class implements the abstract syntax tree for
- * an assembler language program.
+ * This class implements the abstract syntax tree for an assembly language program.
  */
 public class Program extends AST
   {

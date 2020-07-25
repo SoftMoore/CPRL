@@ -12,11 +12,11 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction LDCSTR. <br>
- * Note: Only one argument (the string literal) is specified
- * for this instruction in assembly language, but two args are
- * generated for the CVM machine code.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction LDCSTR. <br>
+ * 
+ * Note: Only one argument (the string literal) is specified for this instruction
+ * in assembly language, but two args are generated for the CVM machine code.
  */
 public class InstructionLDCSTR extends InstructionOneArg
   {

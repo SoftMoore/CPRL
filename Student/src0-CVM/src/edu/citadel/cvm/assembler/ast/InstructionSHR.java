@@ -11,8 +11,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction SHR.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction SHR.
  */
 public class InstructionSHR extends InstructionOneArg
   {

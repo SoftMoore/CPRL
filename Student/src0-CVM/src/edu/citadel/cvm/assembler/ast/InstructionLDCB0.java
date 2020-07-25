@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction LDCB0.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction LDCB0.
  */
 public class InstructionLDCB0 extends InstructionNoArgs
   {

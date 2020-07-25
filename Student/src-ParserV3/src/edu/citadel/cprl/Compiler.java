@@ -68,15 +68,7 @@ public class Compiler
             // no error recovery from errors detected during code generation
             try
               {
-                PrintWriter targetPrintWriter = getTargetPrintWriter(sourceFile);
-                if (targetPrintWriter != null)
-                    AST.setPrintWriter(targetPrintWriter);
-                else
-                  {
-                    String errorMsg = "unable to create target output stream";
-                    throw new CodeGenException(errorMsg);
-                  }
-
+                AST.setPrintWriter(getTargetPrintWriter(sourceFile));
                 program.emit();
               }
             catch (CodeGenException ex)
@@ -140,7 +132,7 @@ public class Compiler
     /**
      * Returns a PrintWriter used for writing the assembly code.  The target
      * print writer writes to a file with the same base file name as the source
-     * file but with a ".asm" suffix. 
+     * file but with a ".asm" suffix.
      */
     private PrintWriter getTargetPrintWriter(File sourceFile)
       {
@@ -152,21 +144,17 @@ public class Compiler
 
         String targetFileName = baseName + ".asm";
 
-        File targetFile = null;
-        PrintWriter writer = null;
-
         try
           {
-            targetFile = new File(sourceFile.getParent(), targetFileName);
-            writer = new PrintWriter(new FileWriter(targetFile), true);
+            File targetFile = new File(sourceFile.getParent(), targetFileName);
+            return new PrintWriter(new FileWriter(targetFile), true);
           }
         catch (IOException e)
           {
             e.printStackTrace();
             System.exit(FAILURE);
+            return null;   // will never execute
           }
-
-        return writer;
       }
 
 

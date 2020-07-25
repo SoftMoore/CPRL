@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction LDGADDR.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction LDGADDR.
  */
 public class InstructionLDGADDR extends InstructionOneArg
   {

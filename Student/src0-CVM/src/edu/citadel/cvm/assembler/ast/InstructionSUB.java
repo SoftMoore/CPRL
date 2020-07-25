@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction SUB.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction SUB.
  */
 public class InstructionSUB extends InstructionNoArgs
   {

@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction BZ.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction BZ.
  */
 public class InstructionBZ extends InstructionOneArg
   {

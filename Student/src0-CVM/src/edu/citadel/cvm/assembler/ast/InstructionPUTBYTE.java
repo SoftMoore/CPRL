@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction PUTBYTE.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction PUTBYTE.
  */
 public class InstructionPUTBYTE extends InstructionNoArgs
   {

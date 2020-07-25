@@ -11,7 +11,7 @@ import edu.citadel.compiler.Position;
 public class Token extends AbstractToken<Symbol>
   {
     /**
-     * Constructs a new token with the given symbol, position, and text.
+     * Construct a new token with the given symbol, position, and text.
      */
     public Token(Symbol symbol, Position position, String text)
       {

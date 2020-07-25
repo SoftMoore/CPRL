@@ -14,7 +14,7 @@ import java.io.*;
  */
 public abstract class AST
   {
-    // Number of spaces to print before opcode
+    // number of spaces to print before opcode
     private static final String SPACES = "   ";
 
     private static PrintWriter out = new PrintWriter(System.out);

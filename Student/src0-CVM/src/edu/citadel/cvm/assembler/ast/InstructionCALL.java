@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction CALL.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction CALL.
  */
 public class InstructionCALL extends InstructionOneArg
   {

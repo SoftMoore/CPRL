@@ -33,6 +33,9 @@ public abstract class Instruction extends AST
     private int address;
 
 
+    /**
+     * Construct an instruction with a list of labels and an opcode.
+     */
     public Instruction(List<Token> labels, Token opCode)
       {
         this.labels = labels;

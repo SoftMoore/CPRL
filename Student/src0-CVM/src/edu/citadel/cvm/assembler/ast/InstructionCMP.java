@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction CMP.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction CMP.
  */
 public class InstructionCMP extends InstructionNoArgs
   {

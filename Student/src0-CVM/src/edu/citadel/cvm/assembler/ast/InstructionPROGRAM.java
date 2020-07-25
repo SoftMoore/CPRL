@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction PROGRAM.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction PROGRAM.
  */
 public class InstructionPROGRAM extends InstructionOneArg
   {

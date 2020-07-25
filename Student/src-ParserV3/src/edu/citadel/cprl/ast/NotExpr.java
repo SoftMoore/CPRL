@@ -17,6 +17,9 @@ import java.io.IOException;
  */
 public class NotExpr extends UnaryExpr
   {
+    /**
+     * Construct a not expression with the specified operator ("not") and operand.
+     */
     public NotExpr(Token operator, Expression operand)
       {
         super(operator, operand);

@@ -14,6 +14,9 @@ import java.util.List;
  */
 public abstract class InstructionNoArgs extends Instruction
   {
+    /**
+     * Construct a no-argument instruction with a list of labels and an opcode.
+     */
     public InstructionNoArgs(List<Token> labels, Token opCode)
       {
         super(labels, opCode);

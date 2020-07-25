@@ -12,8 +12,8 @@ import java.io.IOException;
 
 
 /**
- * This class implements the abstract syntax tree for
- * the assembly language instruction ALLOC.
+ * This class implements the abstract syntax tree for the assembly
+ * language instruction ALLOC.
  */
 public class InstructionALLOC extends InstructionOneArg
   {

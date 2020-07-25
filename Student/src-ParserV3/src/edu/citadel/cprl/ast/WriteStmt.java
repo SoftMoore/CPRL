@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class WriteStmt extends OutputStmt
   {
+    /**
+     * Construct a write statement with the list of expressions.
+     */
     public WriteStmt(List<Expression> expressions)
       {
         super(expressions);

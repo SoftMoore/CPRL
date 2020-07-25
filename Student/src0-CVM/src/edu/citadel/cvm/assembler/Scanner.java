@@ -27,8 +27,7 @@ public class Scanner
 
 
     /**
-     * Initialize scanner with its associated source and advance
-     * to the first token.
+     * Initialize scanner with its associated source and advance to the first token.
      */
     public Scanner(Source source) throws IOException
       {
