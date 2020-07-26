@@ -131,13 +131,7 @@ public class Scanner
             ErrorHandler.getInstance().reportError(e);
 
             // set token to either EOF or unknown
-            if (source.getChar() == Source.EOF)
-              {
-                if (getSymbol() != Symbol.EOF)
-                    symbol = Symbol.EOF;
-              }
-            else
-                symbol = Symbol.unknown;
+            symbol = source.getChar() == Source.EOF ? Symbol.EOF : Symbol.unknown;
           }
       }
 
@@ -362,11 +356,11 @@ public class Scanner
 
         switch (c)
           {
-            case 'b'  : return "\\b";   // backspace
-            case 't'  : return "\\t";   // tab
-            case 'n'  : return "\\n";   // linefeed (a.k.a. newline)
-            case 'f'  : return "\\f";   // form feed
-            case 'r'  : return "\\r";   // carriage return
+            case 'b'  : return "\\b";    // backspace
+            case 't'  : return "\\t";    // tab
+            case 'n'  : return "\\n";    // linefeed (a.k.a. newline)
+            case 'f'  : return "\\f";    // form feed
+            case 'r'  : return "\\r";    // carriage return
             case '\"' : return "\\\"";   // double quote
             case '\'' : return "\\\'";   // single quote
             case '\\' : return "\\\\";   // backslash
@@ -374,7 +368,7 @@ public class Scanner
                         String errMessage = "Illegal escape character.";
                         ScannerException ex = new ScannerException(backslashPosition, errMessage);
                         ErrorHandler.getInstance().reportError(ex);
-                        return "\\c";
+                        return "\\" + c;
           }
       }
 
