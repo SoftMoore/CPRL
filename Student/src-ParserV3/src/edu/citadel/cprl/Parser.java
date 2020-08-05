@@ -755,7 +755,7 @@ public class Parser
 
 
     /**
-     * Parse the following grammar rule:<br>
+     * Parse the following grammar rules:<br>
      * <code>relation = simpleExpr ( relationalOp simpleExpr )? .<br>
      *   relationalOp = "=" | "!=" | "&lt;" | "&lt;=" | "&gt;" | "&gt;=" .</code>
      *
