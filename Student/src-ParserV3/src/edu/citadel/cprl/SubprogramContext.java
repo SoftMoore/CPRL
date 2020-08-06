@@ -21,7 +21,7 @@ public final class SubprogramContext
 
     /**
      * Returns the subprogram declaration currently being parsed.
-     * Returns null if no currently parsing a subprogram.
+     * Returns null if not currently parsing a subprogram.
      */
     public SubprogramDecl getSubprogramDecl()
       {

@@ -22,7 +22,7 @@ public final class LoopContext
 
     /**
      * Returns the loop statement currently being parsed.
-     * Returns null if no such loop statement exists.
+     * Returns null if not currently parsing a loop.
      */
     public LoopStmt getLoopStmt()
       {
