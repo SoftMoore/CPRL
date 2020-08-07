@@ -2,9 +2,7 @@ package edu.citadel.cprl.ast;
 
 
 import edu.citadel.compiler.CodeGenException;
-
 import java.util.List;
-import java.io.IOException;
 
 
 /**
@@ -38,7 +36,7 @@ public class StatementPart extends AST
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

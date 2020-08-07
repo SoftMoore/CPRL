@@ -6,7 +6,7 @@ import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.Position;
 import edu.citadel.cprl.Type;
 
-import java.io.*;
+import java.io.PrintWriter;
 
 
 /**
@@ -33,7 +33,7 @@ public abstract class AST
 
 
     /**
-     * Creates/returns a new constraint exception with the specified position and message. 
+     * Creates/returns a new constraint exception with the specified position and message.
      */
     protected ConstraintException error(Position errorPos, String errorMsg)
       {
@@ -50,10 +50,9 @@ public abstract class AST
     /**
      * Emit the object code for the AST.
      *
-     * @throws IOException if there is a problem writing to the target file.
      * @throws CodeGenException if the method is unable to generate appropriate target code.
      */
-    public abstract void emit() throws CodeGenException, IOException;
+    public abstract void emit() throws CodeGenException
 
 
     /**
@@ -80,7 +79,7 @@ public abstract class AST
     /**
      * Emits the appropriate LOAD instruction based on the type.
      */
-    protected void emitLoadInst(Type t) throws IOException
+    protected void emitLoadInst(Type t)
       {
         int numBytes = t.getSize();
 
@@ -98,7 +97,7 @@ public abstract class AST
     /**
      * Emits the appropriate STORE instruction based on the type.
      */
-    protected void emitStoreInst(Type t) throws IOException
+    protected void emitStoreInst(Type t)
       {
         int numBytes = t.getSize();
 

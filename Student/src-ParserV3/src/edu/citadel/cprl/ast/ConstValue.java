@@ -8,8 +8,6 @@ import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a constant value expression, which is
@@ -96,7 +94,7 @@ public class ConstValue extends Expression
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         Type exprType = getType();
 

@@ -8,7 +8,6 @@ import edu.citadel.cprl.Token;
 
 import java.util.List;
 import java.util.Iterator;
-import java.io.IOException;
 
 
 /**
@@ -76,7 +75,7 @@ public class FunctionCall extends Expression
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         // allocate space on the stack for the return value
         emit("ALLOC " + funcDecl.getType().getSize());

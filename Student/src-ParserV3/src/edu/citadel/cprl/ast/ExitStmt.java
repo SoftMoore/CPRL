@@ -6,8 +6,6 @@ import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for an exit statement.
@@ -37,7 +35,7 @@ public class ExitStmt extends Statement
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

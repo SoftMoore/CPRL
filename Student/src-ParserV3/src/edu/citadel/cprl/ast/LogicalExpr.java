@@ -8,8 +8,6 @@ import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a logical expression.  A logical expression
@@ -74,7 +72,7 @@ public class LogicalExpr extends BinaryExpr
      * Uses short-circuit evaluation for logical expressions.
      */
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         // Note: Unlike the various emitBranch methods, this method will leave the
         // value (true or false) of the logical expression on the top of the stack.

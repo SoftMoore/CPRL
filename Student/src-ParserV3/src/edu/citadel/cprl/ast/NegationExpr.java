@@ -8,8 +8,6 @@ import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a negation expression.  A negation
@@ -37,7 +35,7 @@ public class NegationExpr extends UnaryExpr
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

@@ -6,8 +6,6 @@ import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.Position;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for an assignment statement.
@@ -43,7 +41,7 @@ public class AssignmentStmt extends Statement
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

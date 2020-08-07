@@ -6,7 +6,6 @@ import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -83,7 +82,7 @@ public class ElsifPart extends AST
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         booleanExpr.emitBranch(false, L1);
 

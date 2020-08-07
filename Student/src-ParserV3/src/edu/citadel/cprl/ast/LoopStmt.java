@@ -8,7 +8,6 @@ import edu.citadel.cprl.Type;
 
 import java.util.Collections;
 import java.util.List;
-import java.io.IOException;
 
 
 /**
@@ -78,7 +77,7 @@ public class LoopStmt extends Statement
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

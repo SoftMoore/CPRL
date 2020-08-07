@@ -6,8 +6,7 @@ import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Token;
 
-import java.util.*;
-import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -68,7 +67,7 @@ public class FunctionDecl extends SubprogramDecl
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

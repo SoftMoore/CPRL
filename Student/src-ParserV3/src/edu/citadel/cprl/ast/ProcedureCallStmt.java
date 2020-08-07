@@ -7,7 +7,6 @@ import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Token;
 
 import java.util.List;
-import java.io.IOException;
 
 
 /**
@@ -41,7 +40,7 @@ public class ProcedureCallStmt extends Statement
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

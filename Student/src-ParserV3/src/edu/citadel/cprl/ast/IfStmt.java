@@ -7,7 +7,6 @@ import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Type;
 
 import java.util.List;
-import java.io.IOException;
 
 
 /**
@@ -108,7 +107,7 @@ public class IfStmt extends Statement
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         // if expression evaluates to false, branch to L1
         booleanExpr.emitBranch(false, L1);

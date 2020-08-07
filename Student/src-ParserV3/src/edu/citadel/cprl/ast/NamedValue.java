@@ -3,8 +3,6 @@ package edu.citadel.cprl.ast;
 
 import edu.citadel.compiler.CodeGenException;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a named value.  A named value is similar
@@ -26,7 +24,7 @@ public class NamedValue extends Variable
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         super.emit();              // leaves address of variable on top of stack
         emitLoadInst(getType());   // replaces address by value at that address

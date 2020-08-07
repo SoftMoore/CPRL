@@ -6,8 +6,6 @@ import edu.citadel.compiler.Position;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * Base class for all CPRL declarations (constants, variables, procedures, etc.).
@@ -73,13 +71,13 @@ public abstract class Declaration extends AST
       {
         return idToken.getPosition();
       }
-    
-    
+
+
     // Note: Most declarations do not require code generation.
     // A default implementation is provided for convenience.
-    
+
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         // nothing to do for most declarations
       }

@@ -8,8 +8,6 @@ import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a multiplying expression.  A multiplying
@@ -39,7 +37,7 @@ public class MultiplyingExpr extends BinaryExpr
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

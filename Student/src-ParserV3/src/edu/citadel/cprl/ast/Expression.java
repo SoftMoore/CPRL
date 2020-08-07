@@ -5,8 +5,6 @@ import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.Position;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * Base class for all CPRL expressions.
@@ -81,10 +79,9 @@ public abstract class Expression extends AST
      * @param condition  the condition that determines the branch to be emitted.
      * @param label      the label for the branch destination.
      *
-     * @throws IOException       if there is a problem writing to the target file.
      * @throws CodeGenException  if the method is unable to generate appropriate target code.
      */
-    public void emitBranch(boolean condition, String label) throws CodeGenException, IOException
+    public void emitBranch(boolean condition, String label) throws CodeGenException
       {
         // default behavior unless overridden; correct for constants and named values
         assert exprType == Type.Boolean : "Expression type is not Boolean.";

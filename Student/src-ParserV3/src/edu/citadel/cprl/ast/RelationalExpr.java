@@ -8,8 +8,6 @@ import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a relational expression.  A relational
@@ -47,7 +45,7 @@ public class RelationalExpr extends BinaryExpr
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         emitBranch(false, L1);
 
@@ -69,7 +67,7 @@ public class RelationalExpr extends BinaryExpr
 
 
     @Override
-    public void emitBranch(boolean condition, String label) throws CodeGenException, IOException
+    public void emitBranch(boolean condition, String label) throws CodeGenException
       {
         Token operator = getOperator();
 
@@ -95,7 +93,7 @@ public class RelationalExpr extends BinaryExpr
       }
 
 
-    private void emitOperands() throws CodeGenException, IOException
+    private void emitOperands() throws CodeGenException
       {
         Expression leftOperand  = getLeftOperand();
         Expression rightOperand = getRightOperand();

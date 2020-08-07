@@ -3,8 +3,6 @@ package edu.citadel.cprl.ast;
 
 import edu.citadel.compiler.CodeGenException;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a CPRL program.
@@ -72,7 +70,7 @@ public class Program extends AST
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         setRelativeAddresses();
 

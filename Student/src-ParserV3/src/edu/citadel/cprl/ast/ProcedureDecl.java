@@ -4,8 +4,6 @@ package edu.citadel.cprl.ast;
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.cprl.Token;
 
-import java.io.IOException;
-
 
 /**
  * The abstract syntax tree node for a procedure declaration.
@@ -25,7 +23,7 @@ public class ProcedureDecl extends SubprogramDecl
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
 // ...
       }

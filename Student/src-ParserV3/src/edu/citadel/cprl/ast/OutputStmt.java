@@ -5,7 +5,6 @@ import edu.citadel.compiler.CodeGenException;
 import edu.citadel.cprl.Type;
 
 import java.util.List;
-import java.io.IOException;
 
 
 /**
@@ -17,7 +16,7 @@ public abstract class OutputStmt extends Statement
 
 
     /**
-     * Construct an output statement with the list of expressions. 
+     * Construct an output statement with the list of expressions.
      */
     public OutputStmt(List<Expression> expressions)
       {
@@ -49,7 +48,7 @@ public abstract class OutputStmt extends Statement
      * Emits code to write the value of each expression to standard output.
      */
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         for (Expression expr : expressions)
           {

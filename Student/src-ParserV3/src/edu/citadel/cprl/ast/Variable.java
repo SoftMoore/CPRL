@@ -10,7 +10,6 @@ import edu.citadel.cprl.ScopeLevel;
 import edu.citadel.cprl.Type;
 
 import java.util.List;
-import java.io.IOException;
 
 
 /**
@@ -114,7 +113,7 @@ public class Variable extends Expression
 
 
     @Override
-    public void emit() throws CodeGenException, IOException
+    public void emit() throws CodeGenException
       {
         if (decl instanceof ParameterDecl && ((ParameterDecl)decl).isVarParam())
           {
