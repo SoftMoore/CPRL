@@ -1,4 +1,4 @@
-var   x : Integer;
+const i := 5;
 
 procedure inc(var n : Integer) is
 begin
@@ -6,5 +6,5 @@ begin
 end inc;
 
 begin
-   inc(5);   // actual parameter passed to a var parameter must be a variable
+   inc(i);   // actual parameter passed to a var parameter must be a variable
 end.

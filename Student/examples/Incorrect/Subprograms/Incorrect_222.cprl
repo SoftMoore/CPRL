@@ -5,7 +5,7 @@ procedure f(b : Boolean) is
 begin
 
    if b then
-      return n;
+      return n;   // return expression not allowed for procedures
    else
       writeln -1;
    end if;
@@ -14,7 +14,7 @@ end f;
 
 begin
 
-   f(true);       // incorrect argument type
+   f(true);
    write x;
 
 end.
