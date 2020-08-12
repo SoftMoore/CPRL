@@ -2,7 +2,6 @@ package edu.citadel.cprl;
 
 
 import edu.citadel.compiler.ParserException;
-import edu.citadel.compiler.Position;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +53,7 @@ public final class IdTable
     public void openScope()
       {
         ++currentLevel;
-        table.add(currentLevel, new HashMap<String, IdType>(INITIAL_MAP_SIZE));
+        table.add(currentLevel, new HashMap<>(INITIAL_MAP_SIZE));
       }
 
 
@@ -75,7 +74,7 @@ public final class IdTable
      */
     public void add(Token idToken, IdType idType) throws ParserException
       {
-        // assumes that idToken is actually an identifier token
+        // assumes that idToken is an identifier token
         assert idToken.getSymbol() == Symbol.identifier :
             "IdTable.add(): The symbol for idToken is not an identifier.";
 
@@ -98,6 +97,7 @@ public final class IdTable
      */
     public IdType get(Token idToken)
       {
+        // assumes that idToken is an identifier token
         assert idToken.getSymbol() == Symbol.identifier :
             "IdTable.get(): The symbol for idToken is not an identifier.";
 

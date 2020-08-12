@@ -78,9 +78,9 @@ public final class IdTable
       {
         Token idToken = decl.getIdToken();
 
-        // assumes that idToken is actually an identifier token
+        // assumes that idToken is an identifier token
         assert idToken.getSymbol() == Symbol.identifier :
-            "The symbol for idToken is not an identifier.";
+            "IdTable.add(): The symbol for idToken is not an identifier.";
 
         Map<String, Declaration> idMap = table.get(currentLevel);
         Declaration oldDecl = idMap.put(idToken.getText(), decl);
@@ -102,9 +102,9 @@ public final class IdTable
      */
     public Declaration get(Token idToken)
       {
-        // assumes that idToken is an identifier
+        // assumes that idToken is an identifier token
         assert idToken.getSymbol() == Symbol.identifier :
-            "The symbol for idToken is not an identifier.";
+            "IdTable.get(): The symbol for idToken is not an identifier.";
 
         Declaration decl = null;
         int level = currentLevel;
