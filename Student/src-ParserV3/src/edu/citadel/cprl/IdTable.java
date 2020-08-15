@@ -97,7 +97,7 @@ public final class IdTable
 
     /**
      * Returns the Declaration associated with the identifier token's text.
-     * Returns null if no such declaration is found.  Searches enclosing
+     * Returns null if the idenfifier is not found.  Searches enclosing
      * scopes if necessary.
      */
     public Declaration get(Token idToken)

@@ -92,7 +92,7 @@ public final class IdTable
 
 
     /**
-     * Returns the IdType associated with the identifier  token's text.
+     * Returns the IdType associated with the identifier token's text.
      * Returns null if the identifier is not found.  Searches enclosing
      * scopes if necessary.
      */
