@@ -405,13 +405,13 @@ public class Parser
 
 // ...
 
-// Error recovery here is complicated for identifiers since they can both
-// start a statement and appear elsewhere in the statement.  (Consider,
-// for example, an assignment statement or a procedure call statement.)
-// Since the most common error is to declare or reference an identifier
-// incorrectly, we will assume that this is the case and advance to the
-// next semicolon (which hopefully ends the erroneous statement) before
-// performing error recovery.
+        // Error recovery here is complicated for identifiers since they can both
+        // start a statement and appear elsewhere in the statement.  (Consider,
+        // for example, an assignment statement or a procedure call statement.)
+        // Since the most common error is to declare or reference an identifier
+        // incorrectly, we will assume that this is the case and advance to the
+        // next semicolon (which hopefully ends the erroneous statement) before
+        // performing error recovery.
       }
 
 
