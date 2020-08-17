@@ -89,7 +89,7 @@ public enum Symbol
     // instance fields
     private final String label;
 
-    
+
     /**
      * Construct a new symbol with its label.
      */
@@ -106,7 +106,7 @@ public enum Symbol
       {
         return this.compareTo(BooleanRW) >=0 && this.compareTo(writelnRW) <= 0;
       }
-    
+
 
     /**
      * Returns true if this symbol can start an initial declaration.
@@ -190,8 +190,8 @@ public enum Symbol
      */
     public boolean isExprStarter()
       {
-        return isLiteral()         || this == Symbol.identifier || this == Symbol.leftParen
-            || this == Symbol.plus || this == Symbol.minus      || this == Symbol.notRW;
+        return isLiteral()  || this == identifier || this == leftParen
+            || this == plus || this == minus      || this == notRW;
       }
 
 
