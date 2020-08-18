@@ -143,6 +143,5 @@ public class Variable extends Expression
 // Instead of emitting based on getType().getSize(), emit based on arrayType.getElementType().getSize().
 
 // At the end of the loop, set declType to arrayType.getElementType().
-          }
       }
   }
