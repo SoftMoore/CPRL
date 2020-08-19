@@ -11,10 +11,10 @@ del *.obj
 
 echo Recompiling all ".cprl files
 echo.
-call cprlc_all > nul 2>&1
+call cprlc_all > nul
 
 echo Reasembling all ".asm" files
 echo.
-call assemble_all > nul 2>&1
+call assemble_all > nul
 
 for %%f in (*.obj) do (call testCorrect %%~nf)
