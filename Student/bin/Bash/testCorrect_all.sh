@@ -11,11 +11,11 @@ rm -f *.obj
 
 echo Recompiling all \".cprl\" files
 echo
-cprlc_all.sh >/dev/null
+cprlc_all.sh > /dev/null
 
 echo Reasembling all \".asm\" files
 echo
-assemble_all.sh >/dev/null
+assemble_all.sh > /dev/null
 
 for file in *.obj
 do
