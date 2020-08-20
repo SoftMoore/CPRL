@@ -109,6 +109,12 @@ public class Assembler
         // parse source file
         Program prog = parser.parseProgram();
 
+        if (DEBUG)
+          {
+            System.out.println("Program after parsing");
+            printInstructions(prog.getInstructions());
+          }
+
         // optimize
         if (!errorHandler.errorsExist() && OPTIMIZE)
           {
@@ -118,7 +124,7 @@ public class Assembler
 
         if (DEBUG)
           {
-            System.out.println("Program after checking constraints");
+            System.out.println("Program after performing optimizations");
             printInstructions(prog.getInstructions());
           }
 
@@ -136,6 +142,12 @@ public class Assembler
             prog.checkConstraints();
           }
 
+        if (DEBUG)
+          {
+            System.out.println("Program after checking constraints");
+            printInstructions(prog.getInstructions());
+          }
+
         // generate code
         if (!errorHandler.errorsExist())
           {
@@ -149,7 +161,7 @@ public class Assembler
         if (errorHandler.errorsExist())
             printProgressMessage("*** Errors detected -- assembly terminated. ***");
         else
-            printProgressMessage("Compilation complete.");        
+            printProgressMessage("Assembly complete.");        
       }
 
 
