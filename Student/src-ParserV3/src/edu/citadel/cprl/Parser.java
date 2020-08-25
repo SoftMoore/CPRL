@@ -216,8 +216,7 @@ public class Parser
             Type varType = parseTypeName();
             match(Symbol.semicolon);
 
-            ScopeLevel scopeLevel = idTable.getCurrentLevel();
-            VarDecl varDecl = new VarDecl(identifiers, varType, scopeLevel);
+            VarDecl varDecl = new VarDecl(identifiers, varType, idTable.getScopeLevel());
 
             for (SingleVarDecl decl : varDecl.getSingleVarDecls())
                 idTable.add(decl);

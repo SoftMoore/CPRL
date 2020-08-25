@@ -42,7 +42,7 @@ public final class IdTable
     /**
      * Returns the current scope level.
      */
-    public ScopeLevel getCurrentLevel()
+    public ScopeLevel getScopeLevel()
       {
         return currentLevel == 0 ? ScopeLevel.PROGRAM : ScopeLevel.SUBPROGRAM;
       }
