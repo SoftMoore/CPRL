@@ -7,7 +7,7 @@ import java.io.IOException;
 
 
 /**
- * A scanner for SEL with two-token lookahead. 
+ * A scanner for SEL with two-symbol lookahead.
  */
 public class Scanner
   {
@@ -16,9 +16,7 @@ public class Scanner
     private Position position;       // position of current symbol
     private String   text;           // text of current token (for identifiers and literals)
     private Symbol   peekSymbol;     // second symbol
-    private Position peekPosition;   // position of second symbol
-    private String   peekText;       // text of second token (for identifiers and literals)
-    private Boolean  isPeekValid;    // true if peek fields are valid
+    private Boolean  isPeekValid;    // true if peek symbol is valid
 
     private StringBuilder scanBuffer;
 
@@ -43,8 +41,8 @@ public class Scanner
       {
         return new Token(symbol, position, text);
       }
-    
-    
+
+
     /**
      * Returns a reference to the current symbol in the source.
      */
@@ -64,32 +62,12 @@ public class Scanner
 
 
     /**
-     * Returns a copy of the current token in the source file.
-     */
-    public Token getPeekToken() throws IOException, InterpreterException
-      {
-        advancePeek();
-        return new Token(peekSymbol, peekPosition, peekText);
-      }
-
-
-    /**
      * @return the peekSymbol
      */
     public Symbol getPeekSymbol() throws IOException, InterpreterException
       {
         advancePeek();
         return peekSymbol;
-      }
-
-
-    /**
-     * @return the peekPosition
-     */
-    public Position getPeekPosition() throws IOException, InterpreterException
-      {
-        advancePeek();
-        return peekPosition;
       }
 
 
@@ -104,10 +82,7 @@ public class Scanner
 
             advance();
 
-            // set values for peek properties
             peekSymbol = symbol;
-            peekPosition = position;
-            peekText = text;
 
             // restore saved current values
             symbol = savedSymbol;
@@ -126,17 +101,15 @@ public class Scanner
       {
         if (isPeekValid)
           {
-            // peekToken was previously used as the lookahead
-            // token and is now valid as the current token
+            // peekSymbol was previously used as the second lookahead
+            // symbol and is now valid as the current symbol
             symbol      = peekSymbol;
-            position    = peekPosition;
-            text        = peekText;  
             isPeekValid = false;
           }
         else
           {
             skipWhiteSpace();
-            
+
             // currently at starting character of the next token
             position = source.getCharPosition();
             text = "";
@@ -279,7 +252,7 @@ public class Scanner
             source.advance();
           }
         while (Character.isDigit((char) source.getChar()));
-        
+
         if ((char) source.getChar() == '.')
           {
             scanBuffer.append((char) source.getChar());
@@ -287,7 +260,7 @@ public class Scanner
 
             if (!Character.isDigit((char) source.getChar()))
                 error("Invalid numeric literal");
-            
+
             do
               {
                 scanBuffer.append((char) source.getChar());
