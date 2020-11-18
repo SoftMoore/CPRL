@@ -147,7 +147,7 @@ public class Scanner
 
 
     /**
-     *  Skip over a comment.
+     * Skip over a comment.
      */
     private void skipComment() throws ScannerException, IOException
       {
