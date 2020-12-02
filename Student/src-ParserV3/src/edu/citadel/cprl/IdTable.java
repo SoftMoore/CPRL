@@ -112,7 +112,7 @@ public final class IdTable
         while (level >= 0 && decl == null)
           {
             Map<String, Declaration> idMap = table.get(level);
-            decl = (Declaration) idMap.get(idToken.getText());
+            decl = idMap.get(idToken.getText());
             --level;
           }
 
