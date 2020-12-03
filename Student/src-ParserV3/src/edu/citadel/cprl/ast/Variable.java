@@ -62,15 +62,6 @@ public class Variable extends Expression
       }
 
 
-    /**
-     * Sets the list of index expressions for an array.
-     */
-    public void setIndexExprs(List<Expression> indexExprs)
-      {
-        this.indexExprs = indexExprs;
-      }
-
-
     @Override
     public void checkConstraints()
       {
