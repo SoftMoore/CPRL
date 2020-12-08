@@ -100,14 +100,12 @@ public class RelationalExpr extends BinaryExpr
 
         // Relational operators compare integers only, so we need to make sure
         // that we have enough bytes on the stack.  Pad with zero bytes.
-        int leftOperandSize = leftOperand.getType().getSize();
-        for (int n = 1;  n <= (Type.Integer.getSize() - leftOperandSize);  ++n)
+        for (int n = 1;  n <= (Type.Integer.getSize() - leftOperand.getType().getSize());  ++n)
             emit("LDCB 0");
 
         leftOperand.emit();
 
-        int rightOperandSize = rightOperand.getType().getSize();
-        for (int n = 1;  n <= (Type.Integer.getSize() - rightOperandSize);  ++n)
+        for (int n = 1;  n <= (Type.Integer.getSize() - rightOperand.getType().getSize());  ++n)
             emit("LDCB 0");
 
         rightOperand.emit();
