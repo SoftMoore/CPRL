@@ -83,13 +83,10 @@ public class LogicalExpr extends BinaryExpr
 
         Symbol operatorSym = operator.getSymbol();
 
-        // emit code to evaluate the left operand
-        leftOperand.emit();
-
         if (operatorSym == Symbol.andRW)
           {
             // if true, branch to code that will evaluate right operand
-            emit("BNZ " + L1);
+            leftOperand.emitBranch(true, L1);
 
             // otherwise, place "false" back on top of stack as value
             // for the compound "and" expression
@@ -98,7 +95,7 @@ public class LogicalExpr extends BinaryExpr
         else   // operatorSym must be Symbol.orRW
           {
             // if false, branch to code that will evaluate right operand
-            emit("BZ " + L1);
+            leftOperand.emitBranch(false, L1);
 
             // otherwise, place "true" back on top of stack as value
             // for the compound "or" expression
