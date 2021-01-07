@@ -7,4 +7,4 @@
 # set config environment variables
 source cprl_config.sh
 
-java -ea test.cprl.TestSource $1
+java -ea test.compiler.TestSource $1
