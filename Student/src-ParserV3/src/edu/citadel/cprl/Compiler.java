@@ -8,6 +8,7 @@ import edu.citadel.cprl.ast.AST;
 import edu.citadel.cprl.ast.Program;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -40,11 +41,10 @@ public class Compiler
      */
     public void compile() throws IOException
       {
-        FileReader sourceFileReader = new FileReader(sourceFile);
-
-        Source  source  = new Source(sourceFileReader);
-        Scanner scanner = new Scanner(source);
-        Parser  parser  = new Parser(scanner);
+        FileReader reader  = new FileReader(sourceFile, StandardCharsets.UTF_8);
+        Source     source  = new Source(reader);
+        Scanner    scanner = new Scanner(source);
+        Parser     parser  = new Parser(scanner);
 
         ErrorHandler errorHandler = ErrorHandler.getInstance();
 
@@ -147,7 +147,7 @@ public class Compiler
         try
           {
             File targetFile = new File(sourceFile.getParent(), targetFileName);
-            return new PrintWriter(new FileWriter(targetFile), true);
+            return new PrintWriter(new FileWriter(targetFile, StandardCharsets.UTF_8), true);
           }
         catch (IOException e)
           {

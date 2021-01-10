@@ -3,7 +3,9 @@ package edu.citadel.cvm;
 
 import edu.citadel.compiler.util.ByteUtil;
 import edu.citadel.compiler.util.StringUtil;
+
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
@@ -41,12 +43,15 @@ public class CVM
 
     /** default memory size for the virtual machine */
     private static final int DEFAULT_MEMORY_SIZE = 8*K;
-
-    /** scanner for handling basic integer I/O */
+    
+    /** scanner for handling integer input */
     private Scanner scanner;
 
-    /** Reader for handling basic char I/O */
+    /** Reader for handling char input */
     private Reader reader;
+    
+    /** PrintStream for handling output */
+    private PrintStream out;
 
     /** computer memory (for the virtual CPRL machine) */
     private byte[] memory;
@@ -72,13 +77,16 @@ public class CVM
     /**
      * This method constructs a CPRL virtual machine, loads the byte code
      * from the specified file into memory, and runs the byte code.
-     *
+     * 
      * @throws FileNotFoundException if the file specified in args[0] can't be found.
      */
     public static void main(String[] args) throws FileNotFoundException
       {
         if (args.length != 1)
-            printUsageAndExit();
+          {
+            System.err.println("Usage: java edu.citadel.cvm.CVM filename");
+            System.exit(0);
+          }
 
         File sourceFile = new File(args[0]);
 
@@ -96,23 +104,16 @@ public class CVM
       }
 
 
-    private static void printUsageAndExit()
-      {
-        System.out.println("Usage: java edu.citadel.cvm.CVM filename");
-        System.out.println();
-        System.exit(0);
-      }
-
-
     /**
      * Construct a CPRL virtual machine with a given number of bytes of memory.
-     *
+     * 
      * @param numOfBytes the number of bytes in memory of the virtual machine
      */
     public CVM(int numOfBytes)
       {
         scanner = new Scanner(System.in);
-        reader = new InputStreamReader(System.in);
+        reader  = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+        out     = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
         // create and zero out memory
         memory = new byte[numOfBytes];
@@ -131,7 +132,7 @@ public class CVM
 
     /**
      * Loads the program into memory.
-     *
+     * 
      * @param codeFile the FileInputStream containing the object code
      */
     public void loadProgram(FileInputStream codeFile)
@@ -155,13 +156,13 @@ public class CVM
           }
       }
 
-
+    
     /**
      * Prints values of internal registers to standard output.
      */
     private void printRegisters()
       {
-        System.out.println("PC=" + pc + ", BP=" + bp + ", SB=" + sb + ", SP=" + sp );
+        out.println("PC=" + pc + ", BP=" + bp + ", SB=" + sb + ", SP=" + sp );
       }
 
 
@@ -181,10 +182,10 @@ public class CVM
           {
             // Prints "PC ->" in front of the correct memory address
             if (pc == memAddr)
-                System.out.print("PC ->");
+                out.print("PC ->");
             else
-                System.out.print("     ");
-
+                out.print("     ");
+            
             String memAddrStr = StringUtil.format(memAddr, FIELD_WIDTH);
             byte opCode = memory[memAddr];
 
@@ -219,7 +220,7 @@ public class CVM
                 case OpCode.STORE2B:
                 case OpCode.STOREW:
                 case OpCode.SUB:
-                    System.out.println(memAddrStr + ":  " + OpCode.toString(opCode));
+                    out.println(memAddrStr + ":  " + OpCode.toString(opCode));
                     ++memAddr;
                     break;
 
@@ -227,11 +228,11 @@ public class CVM
                 case OpCode.SHL:
                 case OpCode.SHR:
                 case OpCode.LDCB:
-                    System.out.print(memAddrStr + ":  " + OpCode.toString(opCode));
+                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
                     ++memAddr;
-                    System.out.println(" " + memory[memAddr++]);
+                    out.println(" " + memory[memAddr++]);
                   break;
-
+                    
                 // opcodes with one int operand
                 case OpCode.ALLOC:
                 case OpCode.BR:
@@ -250,30 +251,30 @@ public class CVM
                 case OpCode.PROGRAM:
                 case OpCode.RET:
                 case OpCode.STORE:
-                    System.out.print(memAddrStr + ":  " + OpCode.toString(opCode));
+                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
                     ++memAddr;
                     byte0 = memory[memAddr++];
                     byte1 = memory[memAddr++];
                     byte2 = memory[memAddr++];
                     byte3 = memory[memAddr++];
-                    System.out.println(" " + ByteUtil.bytesToInt(byte0, byte1, byte2, byte3));
+                    out.println(" " + ByteUtil.bytesToInt(byte0, byte1, byte2, byte3));
                     break;
 
                 // special case: LDCCH
                 case OpCode.LDCCH:
-                    System.out.print(memAddrStr + ":  " + OpCode.toString(opCode));
+                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
                     ++memAddr;
                     byte0 = memory[memAddr++];
                     byte1 = memory[memAddr++];
-                    System.out.println(" " + ByteUtil.bytesToChar(byte0, byte1));
+                    out.println(" " + ByteUtil.bytesToChar(byte0, byte1));
                     break;
 
                 // special case: LDCSTR
                 case OpCode.LDCSTR:
-                    System.out.print(memAddrStr + ":  " + OpCode.toString(opCode));
+                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
                     ++memAddr;
                     // now print the string
-                    System.out.print("  \"");
+                    out.print("  \"");
                     byte0 = memory[memAddr++];
                     byte1 = memory[memAddr++];
                     byte2 = memory[memAddr++];
@@ -283,13 +284,13 @@ public class CVM
                       {
                         byte0 = memory[memAddr++];
                         byte1 = memory[memAddr++];
-                        System.out.print(ByteUtil.bytesToChar(byte0, byte1));
+                        out.print(ByteUtil.bytesToChar(byte0, byte1));
                       }
-                    System.out.println("\"");
+                    out.println("\"");
                     break;
 
                 default:
-                    System.out.println("*** Unknown opCode ***");
+                    out.println("*** Unknown opCode ***");
                     System.exit(-1);
               }
           }
@@ -299,28 +300,28 @@ public class CVM
           {
             // Prints "SB ->", "BP ->", and "SP ->" in front of the correct memory address
             if (sb == memAddr)
-                System.out.print("SB ->");
+                out.print("SB ->");
             else if (bp == memAddr)
-                System.out.print("BP ->");
+                out.print("BP ->");
             else if (sp == memAddr)
-                System.out.print("SP ->");
+                out.print("SP ->");
             else
-                System.out.print("     ");
+                out.print("     ");
 
             String memAddrStr = StringUtil.format(memAddr, FIELD_WIDTH);
-            System.out.println(memAddrStr + ":  " + memory[memAddr]);
+            out.println(memAddrStr + ":  " + memory[memAddr]);
           }
 
-        System.out.println();
+        out.println();
       }
 
 
     /**
-     * Prompt user and wait for user to press the enter key.
+     * Prompt user and wait for user to press the enter key. 
      */
     private void pause()
       {
-        System.out.println("Press enter to continue...");
+        out.println("Press enter to continue...");
         try
           {
             System.in.read();
@@ -338,7 +339,7 @@ public class CVM
     public void run()
       {
         byte opCode;
-
+        
         running = true;
         pc = 0;
         while (running)
@@ -757,13 +758,13 @@ public class CVM
       {
         int opCodeAddr   = pc - 1;
         int displacement = fetchInt();
-
+        
         pushInt(bp);          // dynamic link
         pushInt(pc);          // return address
 
         // set bp to starting address of new frame
         bp = sp - Constants.BYTES_PER_FRAME + 1;
-
+        
         // set pc to first statement of called procedure
         pc = opCodeAddr + displacement;
       }
@@ -821,7 +822,7 @@ public class CVM
         try
           {
             int ch = reader.read();
-
+            
             if (ch == EOF)
                 error("Invalid input: EOF");
 
@@ -1038,25 +1039,25 @@ public class CVM
 
     private void putChar()
       {
-        System.out.print(popChar());
+        out.print(popChar());
       }
 
 
     private void putByte()
       {
-        System.out.print(popByte());
+        out.print(popByte());
       }
 
 
     private void putInt()
       {
-        System.out.print(popInt());
+        out.print(popInt());
       }
 
 
     private void putEOL()
       {
-        System.out.println();
+        out.println();
       }
 
 
@@ -1066,6 +1067,7 @@ public class CVM
         int strLength = popInt();
 
         char[] str = new char[strLength];
+        byte[] bytes = new byte[strLength];
 
         for (int i = 0;  i < strLength;  ++i)
           {
@@ -1073,9 +1075,10 @@ public class CVM
             byte b1 = memory[strAddr++];
 
             str[i] = ByteUtil.bytesToChar(b0, b1);
+            bytes[i] = memory[strLength];
           }
 
-        System.out.print(str);
+        out.print(str);
       }
 
 
@@ -1086,7 +1089,7 @@ public class CVM
         // zero out left three bits of shiftAmount
         byte mask = 0x1F;   // = 00011111 in binary
         byte shiftAmount = (byte) (fetchByte() & mask);
-
+        
         pushInt(operand << shiftAmount);
       }
 
@@ -1098,7 +1101,7 @@ public class CVM
         // zero out left three bits of shiftAmount
         byte mask = 0x1F;   // = 00011111 in binary
         byte shiftAmount = (byte) (fetchByte() & mask);
-
+        
         pushInt(operand >> shiftAmount);
       }
 
@@ -1169,7 +1172,7 @@ public class CVM
         int operand2 = popInt();
         int operand1 = popInt();
         int result = operand1 - operand2;
-
+        
         pushInt(result);
       }
 

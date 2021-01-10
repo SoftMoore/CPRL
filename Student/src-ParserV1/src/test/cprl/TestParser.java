@@ -8,6 +8,7 @@ import edu.citadel.cprl.Scanner;
 import edu.citadel.cprl.Parser;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -33,7 +34,7 @@ public class TestParser
 
         try
           {
-            fileReader = new FileReader(fileName);
+            fileReader = new FileReader(fileName, StandardCharsets.UTF_8);
           }
         catch (FileNotFoundException e)
           {
@@ -45,7 +46,7 @@ public class TestParser
                 try
                   {
                     fileName += SUFFIX;
-                    fileReader = new FileReader(fileName);
+                    fileReader = new FileReader(fileName, StandardCharsets.UTF_8);
                   }
                 catch (FileNotFoundException ex)
                   {

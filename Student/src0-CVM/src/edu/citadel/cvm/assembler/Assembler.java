@@ -8,6 +8,7 @@ import edu.citadel.cvm.assembler.ast.Instruction;
 import edu.citadel.cvm.assembler.ast.Program;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
@@ -96,11 +97,10 @@ public class Assembler
      */
     public void assemble() throws IOException
       {
-        FileReader sourceFileReader = new FileReader(sourceFile);
-        
-        Source  source  = new Source(sourceFileReader);
-        Scanner scanner = new Scanner(source);
-        Parser  parser  = new Parser(scanner);
+        FileReader reader  = new FileReader(sourceFile, StandardCharsets.UTF_8);  
+        Source     source  = new Source(reader);
+        Scanner    scanner = new Scanner(source);
+        Parser     parser  = new Parser(scanner);
 
         ErrorHandler errorHandler = ErrorHandler.getInstance();
       
@@ -199,6 +199,7 @@ public class Assembler
         System.exit(0);
       }
     
+
     private OutputStream getTargetOutputStream(File sourceFile)
       {
         // get source file name minus the suffix

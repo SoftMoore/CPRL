@@ -279,7 +279,8 @@ public class Scanner
       {
         // assumes that source.getChar() is the opening single quote for the char literal
         assert (char) source.getChar() == '\'' :
-            "scanCharLiteral(): check for opening quote (\') at position " + getPosition();
+            "scanCharLiteral(): check for opening quote (\') at position "
+            + getPosition() + ".";
 
         String errorMsg = "Invalid Char literal.";
         clearScanBuffer();
@@ -342,8 +343,7 @@ public class Scanner
       {
         // assumes that source.getChar() is the backslash for the escaped char
         assert (char) source.getChar() == '\\' :
-            "scanEscapedChar(): check for escape character ('\\') at position "
-            + getPosition();
+            "Check for escape character ('\\') at position " + getPosition() + ".";
 
         // Need to save current position for error reporting.
         Position backslashPosition = source.getCharPosition();

@@ -3,6 +3,7 @@ package test.compiler;
 
 import edu.citadel.compiler.Source;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 public class TestSource
@@ -11,20 +12,21 @@ public class TestSource
       {
         try
           {
-            String fileName = args[0];
-            FileReader fileReader = new FileReader(fileName);
-            Source source = new Source(fileReader);
+            String      fileName = args[0];
+            FileReader  reader   = new FileReader(fileName, StandardCharsets.UTF_8);
+            Source      source   = new Source(reader);
+            PrintStream out      = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
             while (source.getChar() != Source.EOF)
               {
                 int c = source.getChar();
 
                 if (c == '\n')
-                    System.out.print("\\n");
+                    out.print("\\n");
                 else if (c != '\r')
-                    System.out.print((char) c);
+                    out.print((char) c);
 
-                System.out.println("\t" + source.getCharPosition());
+                out.println("\t" + source.getCharPosition());
 
                 source.advance();
               }
@@ -35,4 +37,3 @@ public class TestSource
           }
       }
   }
-

@@ -39,7 +39,7 @@ public class TestByteUtil
           {
             System.out.print("Enter a letter or a numeric value for character c (z to stop): ");
             String line = in.readLine();
-            
+
             if (line != null && line.length() > 0)
               {
                 if (Character.isDigit(line.charAt(0)))
@@ -57,6 +57,8 @@ public class TestByteUtil
 
                     c2 = ByteUtil.bytesToChar(bytes[0], bytes[1]);
                     System.out.println("c2 = " + c2);
+
+                    System.out.println("charToHexString = " + ByteUtil.charToHexString(c));
                     System.out.println();
                   }
                 else
@@ -71,6 +73,8 @@ public class TestByteUtil
 
                     c2 = ByteUtil.bytesToChar(bytes[0], bytes[1]);
                     System.out.println("c2 = " + c2);
+
+                    System.out.println("charToHexString = " + ByteUtil.charToHexString(c));
                     System.out.println();
                   }
               }

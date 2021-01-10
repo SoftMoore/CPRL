@@ -6,6 +6,56 @@ package edu.citadel.compiler.util;
  */
 public class ByteUtil
   {
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+
+
+    /**
+     * Convert a single byte to a string of 2 hexadecimal digits.
+     */
+    public static String byteToHexString(byte b)
+      {
+        StringBuilder builder = new StringBuilder(2);
+        builder.append(HEX_ARRAY[b >>> 4]);
+        builder.append(HEX_ARRAY[b & 0x0F]);
+        return builder.toString();
+      }
+
+
+    /**
+     * Convert a 2-byte char to a string of 4 hexadecimal digits.
+     */
+    public static String charToHexString(char c)
+      {
+        StringBuilder builder = new StringBuilder(2);
+        builder.append(HEX_ARRAY[c >>> 12]);
+        builder.append(HEX_ARRAY[(c & 0x0F00) >> 8]);
+        builder.append(HEX_ARRAY[(c & 0x00F0) >> 4]);
+        builder.append(HEX_ARRAY[c & 0x000F]);
+        return builder.toString();
+      }
+
+
+    /**
+     * Convert an array of bytes to a string of hexadecimal digits separated by spaces.
+     */
+    public static String bytesToHex(byte[] bytes)
+      {
+        StringBuilder builder = new StringBuilder(bytes.length*3);
+        char[] hexChars = new char[bytes.length*2];
+        for (int i = 0;  i < bytes.length; ++i)
+          {
+            int v = bytes[i] & 0xFF;
+            hexChars[i*2] = HEX_ARRAY[v >>> 4];
+            hexChars[i*2 + 1] = HEX_ARRAY[v & 0x0F];
+            builder.append(HEX_ARRAY[v >>> 4]);
+            builder.append(HEX_ARRAY[v & 0x0F]);
+            builder.append(' ');
+          }
+
+        return builder.toString();
+      }
+
+
     /**
      * Converts 2 bytes to a char.  The bytes passed as arguments are
      * ordered with b0 as the high order byte and b1 as the low order byte.

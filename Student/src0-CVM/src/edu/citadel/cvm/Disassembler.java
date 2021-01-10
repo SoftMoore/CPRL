@@ -5,6 +5,7 @@ import edu.citadel.compiler.util.ByteUtil;
 import edu.citadel.compiler.util.StringUtil;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -20,9 +21,11 @@ public class Disassembler
 
     public static void main(String[] args) throws IOException
       {
-        // check args
         if (args.length == 0 || args.length > 1)
-            printUsageAndExit();
+          {
+            System.err.println("Usage: java edu.citadel.cvm.Disassembler filename");
+            System.exit(0);
+          }
 
         String fileName = args[0];
         FileInputStream file = new FileInputStream(fileName);
@@ -32,8 +35,8 @@ public class Disassembler
         String baseName = fileName.substring(0, suffixIndex);
 
         String outputFileName = baseName + ".dis.txt";
-        FileWriter  fw  = new FileWriter(outputFileName);
-        PrintWriter out = new PrintWriter(new BufferedWriter(fw), true);
+        FileWriter writer = new FileWriter(outputFileName, StandardCharsets.UTF_8);
+        PrintWriter out = new PrintWriter(writer, true);
         
         System.out.println("disassembling " + fileName + " to " + outputFileName);
 
@@ -220,13 +223,5 @@ public class Disassembler
             case '\\' : return "\\\\";   // backslash
             default   : return Character.toString(c);
           }
-      }
-
-
-    private static void printUsageAndExit()
-      {
-        System.out.println("Usage: java edu.citadel.cvm.Disassembler filename");
-        System.out.println();
-        System.exit(0);
       }
   }
