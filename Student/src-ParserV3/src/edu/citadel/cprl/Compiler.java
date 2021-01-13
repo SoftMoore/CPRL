@@ -73,12 +73,13 @@ public class Compiler
               }
             catch (CodeGenException ex)
               {
-                ErrorHandler.getInstance().reportError(ex);            
+                errorHandler.reportError(ex);            
               }
           }
 
         if (errorHandler.errorsExist())
-            printProgressMessage("Errors detected -- compilation terminated.");
+            errorHandler.printMessage("Errors detected in " + sourceFile.getName()
+                                    + " -- compilation terminated.");
         else
             printProgressMessage("Compilation complete.");
       }

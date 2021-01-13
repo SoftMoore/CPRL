@@ -27,10 +27,7 @@ public class TestParser
             printUsageAndExit();
 
         String fileName = args[0];
-
         FileReader fileReader = null;
-
-        printProgressMessage("Initializing...");
 
         try
           {
@@ -68,18 +65,16 @@ public class TestParser
         Scanner scanner = new Scanner(source);
         Parser  parser  = new Parser(scanner);
 
-        // write error messages to System.out
         ErrorHandler errorHandler = ErrorHandler.getInstance();
-        errorHandler.setPrintWriter(new PrintWriter(System.out, true));
-
-        printProgressMessage("Starting compilation...");
-
         parser.parseProgram();
 
         if (errorHandler.errorsExist())
-            printProgressMessage("Errors detected -- compilation terminated.");
+          {
+            errorHandler.printMessage("Errors detected in " + fileName
+                                    + " -- parsing terminated.");
+          }
         else
-            printProgressMessage("Compilation complete.");
+            printProgressMessage("Parsing complete.");
 
         System.out.println();
       }

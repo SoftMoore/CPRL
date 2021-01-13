@@ -38,7 +38,7 @@ public class Disassembler
         FileWriter writer = new FileWriter(outputFileName, StandardCharsets.UTF_8);
         PrintWriter out = new PrintWriter(writer, true);
         
-        System.out.println("disassembling " + fileName + " to " + outputFileName);
+        System.out.println("Disassembling " + fileName + " to " + outputFileName);
 
         int inByte;
         int opCodeAddr = 0;
@@ -159,7 +159,7 @@ public class Disassembler
                     break;
 
                 default:
-                    out.println("*** Unknown opCode ***");
+                    System.err.println("*** Unknown opCode in file " + fileName + " ***");
                     break;
               }
           }

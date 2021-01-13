@@ -1,7 +1,6 @@
 package test.cprl;
 
 
-import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.Source;
 import edu.citadel.cprl.Scanner;
 import edu.citadel.cprl.Symbol;
@@ -23,9 +22,6 @@ public class TestScanner
 
             System.out.println("initializing...");
             System.out.println();
-
-            ErrorHandler errorHandler = ErrorHandler.getInstance();
-            errorHandler.setPrintWriter(new PrintWriter(System.out, true));
 
             System.out.println("starting main loop...");
             System.out.println();
@@ -57,7 +53,7 @@ public class TestScanner
     public static void printToken(Token token)
       {
         PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-        out.printf("line: %2d   char: %2d   token: ", 
+        out.printf("line: %2d   char: %2d   token: ",
             token.getPosition().getLineNumber(),
             token.getPosition().getCharNumber());
 
@@ -71,7 +67,7 @@ public class TestScanner
         out.println(token.getText());
       }
 
-    
+
     private static void printUsageAndExit()
       {
         System.out.println("Usage: java test.cprl.TestScanner <test file>");

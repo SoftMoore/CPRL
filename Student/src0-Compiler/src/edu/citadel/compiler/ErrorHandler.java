@@ -2,6 +2,7 @@ package edu.citadel.compiler;
 
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -30,7 +31,7 @@ public class ErrorHandler
     protected ErrorHandler()
       {
         errorCount = 0;
-        err = new PrintWriter(System.err, true);
+        err = new PrintWriter(System.err, true, StandardCharsets.UTF_8);
       }
 
     
@@ -100,5 +101,14 @@ public class ErrorHandler
     public void reportWarning(String warningMessage)
       {
         err.println("Warning: " + warningMessage);
+      }
+
+
+    /**
+     * Prints a message and continues compilation.
+     */
+    public void printMessage(String message)
+      {
+        err.println(message);
       }
   }

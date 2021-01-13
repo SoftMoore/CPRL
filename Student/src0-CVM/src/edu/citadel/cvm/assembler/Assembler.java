@@ -159,7 +159,8 @@ public class Assembler
           }
 
         if (errorHandler.errorsExist())
-            printProgressMessage("*** Errors detected -- assembly terminated. ***");
+            errorHandler.printMessage("Errors detected in " + sourceFile.getName()
+                                    + " -- assembly terminated. ***");
         else
             printProgressMessage("Assembly complete.");        
       }
@@ -191,10 +192,10 @@ public class Assembler
 
     private static void printUsageAndExit()
       {
-        System.out.println("Usage: java Assembler <option> <source file>");
+        System.out.println("Usage: java edu.citadel.cvm.assembler.Assembler <option> <source file>");
         System.out.println("where the option is omitted or is one of the following:");
-        System.out.println("-opt:off    Turns off all assembler optimizations");
-        System.out.println("-opt:on     Turns on all assembler optimizations (default)");
+        System.out.println("-opt:off   Turns off all assembler optimizations");
+        System.out.println("-opt:on    Turns on all assembler optimizations (default)");
         System.out.println();
         System.exit(0);
       }
