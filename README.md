@@ -27,11 +27,11 @@ While it is possible to place all classes in one Eclipse project or IntelliJ IDE
 2. Module `CVM` contains classes that implement the CVM, the virtual machine (emulator) for CPRL. It also contains classes that implement both a CVM assembler and a CVM disassembler. This module has a dependency on the `Compiler` module as described in item 1 above. Its Java module definition is as follows:
 
 ````java
-   module edu.citadel.CVM
+   module edu.citadel.cvm
      {
-       exports edu.citadel.CVM;
-       exports edu.citadel.CVM.assembler;
-       exports edu.citadel.CVM.assembler.ast;
+       exports edu.citadel.cvn;
+       exports edu.citadel.cvm.assembler;
+       exports edu.citadel.cvm.assembler.ast;
        requires transitive edu.citadel.compiler;
      }
 ````
@@ -43,7 +43,7 @@ While it is possible to place all classes in one Eclipse project or IntelliJ IDE
      {
        exports edu.citadel.cprl;
        exports edu.citadel.cprl.ast;
-       requires edu.citadel.CVM;
+       requires edu.citadel.cvm;
        requires transitive edu.citadel.compiler;
      }
 ````
