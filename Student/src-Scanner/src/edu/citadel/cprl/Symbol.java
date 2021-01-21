@@ -180,8 +180,8 @@ public enum Symbol
      */
     public boolean isLiteral()
       {
-        return this == intLiteral     || this == charLiteral || this == stringLiteral
-            || this == trueRW || this == falseRW;
+        return this == intLiteral || this == charLiteral || this == stringLiteral
+            || this == trueRW     || this == falseRW;
       }
 
 
