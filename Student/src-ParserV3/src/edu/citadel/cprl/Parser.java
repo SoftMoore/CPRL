@@ -271,6 +271,8 @@ public class Parser
      * Parse the following grammar rule:<br>
      * <code>arrayTypeDecl = "type" typeId "=" "array" "[" intConstValue "]"
      *                       "of" typeName ";" .</code>
+     *
+     * @return the parsed array type declaration.  Returns null if parsing fails.
      */
     public ArrayTypeDecl parseArrayTypeDecl() throws IOException
       {
@@ -285,7 +287,7 @@ public class Parser
      * Parse the following grammar rule:<br>
      * <code>typeName = "Integer" | "Boolean" | "Char" | typeId .</code>
      *
-     * @return the parsed named type object.  Returns Type.UNKNOWN if parsing fails.
+     * @return the parsed type name.  Returns Type.UNKNOWN if parsing fails.
      */
     public Type parseTypeName() throws IOException
       {
@@ -429,7 +431,7 @@ public class Parser
      * Parse the following grammar rule:<br>
      * <code>formalParameters = "(" parameterDecl ( "," parameterDecl )* ")" .</code>
      *
-     * @return a list of parameter declarations.  Returns an empty list if parsing fails.
+     * @return a list of formal parameter declarations.
      */
     public List<ParameterDecl> parseFormalParameters() throws IOException
       {

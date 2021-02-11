@@ -16,14 +16,14 @@ public interface NamedDecl
      */
     public Type getType();
 
-    
+
     /**
      * Returns the size (number of bytes) of the variable declared
-     * with this named declaration.   
+     * with this named declaration.
      */
     public int getSize();
 
-    
+
     /**
      * Returns the scope level for this declaration.
      */
@@ -39,7 +39,7 @@ public interface NamedDecl
 
     /**
      * Returns the relative address (offset) of the variable declared
-     * with this named declaration. 
+     * with this named declaration.
      */
     public int getRelAddr();
   }

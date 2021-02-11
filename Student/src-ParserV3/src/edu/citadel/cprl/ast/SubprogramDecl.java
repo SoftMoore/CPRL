@@ -39,7 +39,7 @@ public abstract class SubprogramDecl extends Declaration
 
 
     /**
-     * Set the list of initial declarations for this subprogram. 
+     * Set the list of initial declarations for this subprogram.
      */
     public void setInitialDecls(List<InitialDecl> initialDecls)
       {
@@ -48,7 +48,7 @@ public abstract class SubprogramDecl extends Declaration
 
 
     /**
-     * Returns the list of formal parameter declarations for this subprogram. 
+     * Returns the list of formal parameter declarations for this subprogram.
      */
     public List<ParameterDecl> getFormalParams()
       {
@@ -57,7 +57,7 @@ public abstract class SubprogramDecl extends Declaration
 
 
     /**
-     * Set the list of formal parameter declarations for this subprogram. 
+     * Set the list of formal parameter declarations for this subprogram.
      */
     public void setFormalParams(List<ParameterDecl> formalParams)
       {
@@ -66,7 +66,7 @@ public abstract class SubprogramDecl extends Declaration
 
 
     /**
-     * Returns the statement part for this subprogram. 
+     * Returns the statement part for this subprogram.
      */
     public StatementPart getStatementPart()
       {
@@ -75,7 +75,7 @@ public abstract class SubprogramDecl extends Declaration
 
 
     /**
-     * Set the statement part for this subprogram. 
+     * Set the statement part for this subprogram.
      */
     public void setStatementPart(StatementPart stmtPart)
       {
@@ -102,7 +102,7 @@ public abstract class SubprogramDecl extends Declaration
 
 
     /**
-     * Returns the number of bytes for all parameters
+     * Returns the number of bytes for all parameters.
      */
     protected int getParamLength()
       {
@@ -123,11 +123,11 @@ public abstract class SubprogramDecl extends Declaration
 
         for (ParameterDecl paramDecl : formalParams)
             paramDecl.checkConstraints();
-        
+
         stmtPart.checkConstraints();
       }
-    
-    
+
+
     /**
     * Set the relative address (offset) for each variable and
     * parameter, and compute the length of all variables.

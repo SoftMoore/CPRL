@@ -30,7 +30,7 @@ public class ParameterDecl extends Declaration implements NamedDecl
      * Returns the size (number of bytes) associated with this parameter
      * declaration.  The size of a parameter declaration is the number of
      * bytes associated with its type, except for variable parameters,
-     * whose size is the number of bytes of a memory address.  
+     * whose size is the number of bytes of a memory address.
      */
     public int getSize()
       {
@@ -57,7 +57,7 @@ public class ParameterDecl extends Declaration implements NamedDecl
 
     /**
      * Returns the relative address (offset) associated with this parameter
-     * declaration. 
+     * declaration.
      */
     public int getRelAddr()
       {
