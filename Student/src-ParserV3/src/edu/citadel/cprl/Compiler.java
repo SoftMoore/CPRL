@@ -18,7 +18,7 @@ public class Compiler
   {
     private static final String SUFFIX  = ".cprl";
     private static final int    FAILURE = -1;
-    
+
     private File sourceFile;
 
 
@@ -34,8 +34,8 @@ public class Compiler
     /**
      * Compile the source file.  If there are no errors in the source file,
      * the object code is placed in a file with the same base file name as
-     * the source file but with a ".obj" suffix.
-     * 
+     * the source file but with a ".asm" suffix.
+     *
      * @throws IOException if there are problems reading the source file
      *                     or writing to the target file.
      */
@@ -73,7 +73,7 @@ public class Compiler
               }
             catch (CodeGenException ex)
               {
-                errorHandler.reportError(ex);            
+                errorHandler.reportError(ex);
               }
           }
 
@@ -83,11 +83,11 @@ public class Compiler
         else
             printProgressMessage("Compilation complete.");
       }
-    
+
 
     /**
      * This method drives the compilation process.
-     * 
+     *
      * @param args must include the name of the CPRL source file, either the complete
      *             file name or the base file name with suffix ".cprl" omitted.
      */
@@ -108,7 +108,7 @@ public class Compiler
               {
                 fileName += SUFFIX;
                 sourceFile = new File(fileName);
-                
+
                 if (!sourceFile.isFile())
                   {
                     System.err.println("*** File " + fileName + " not found ***");
