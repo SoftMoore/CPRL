@@ -15,11 +15,10 @@ import java.util.List;
      LDCINT 7
      ADD
    </code>
- * can be replaced with 
+ * can be replaced with
  * <code>
      LDCINT 12
  * </code>
-
  */
 public class ConstFolding implements Optimization
   {
@@ -33,7 +32,7 @@ public class ConstFolding implements Optimization
         Instruction instruction0 = instructions.get(instNum);
         Instruction instruction1 = instructions.get(instNum + 1);
         Instruction instruction2 = instructions.get(instNum + 2);
-        
+
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
         Symbol symbol1 = instruction1.getOpCode().getSymbol();
         Symbol symbol2 = instruction2.getOpCode().getSymbol();

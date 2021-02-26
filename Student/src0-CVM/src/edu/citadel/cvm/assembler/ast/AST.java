@@ -6,6 +6,7 @@ import java.io.OutputStream;
 
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.Position;
+import edu.citadel.compiler.util.ByteUtil;
 
 
 /**
@@ -35,15 +36,6 @@ public abstract class AST
 
 
     /**
-     * Returns the OutputStream to be used for code generation
-     */
-    public OutputStream getOutputStream()
-      {
-        return out;
-      }
-
-
-    /**
      * Creates/returns a new constraint exception with the specified position and message. 
      */
     protected ConstraintException error(Position errorPos, String errorMsg)
@@ -53,13 +45,40 @@ public abstract class AST
 
 
     /**
-     * check semantic/contextual constraints
+     * emit the opCode for the instruction
      */
-    public abstract void checkConstraints();
+   protected void emit(byte opCode) throws IOException
+     {
+       out.write(opCode);
+     }
 
 
     /**
-     * emit the object code for the AST
+     * emit an integer argument for the instruction
      */
-    public abstract void emit() throws IOException;
+   protected void emit(int arg) throws IOException
+     {
+       out.write(ByteUtil.intToBytes(arg));
+     }
+
+
+    /**
+     * emit a character argument for the instruction
+     */
+   protected void emit(char arg) throws IOException
+     {
+       out.write(ByteUtil.charToBytes(arg));
+     }
+
+
+   /**
+    * check semantic/contextual constraints
+    */
+   public abstract void checkConstraints();
+
+
+   /**
+    * emit the object code for the AST
+    */
+   public abstract void emit() throws IOException;
   }

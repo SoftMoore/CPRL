@@ -2,13 +2,11 @@ package edu.citadel.cvm.assembler.ast;
 
 
 import edu.citadel.compiler.ConstraintException;
-import edu.citadel.compiler.util.ByteUtil;
 import edu.citadel.cvm.Constants;
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
 
 import java.util.*;
-import java.io.*;
 
 
 /**
@@ -207,32 +205,5 @@ public abstract class Instruction extends AST
         buffer.append("   " + opCode.getText());
 
         return buffer.toString();
-      }
-
-
-     /**
-      * emit the opCode for the instruction
-      */
-    protected void emit(byte opCode) throws IOException
-      {
-        getOutputStream().write(opCode);
-      }
-
-
-     /**
-      * emit an integer argument for the instruction
-      */
-    protected void emit(int arg) throws IOException
-      {
-        getOutputStream().write(ByteUtil.intToBytes(arg));
-      }
-
-
-     /**
-      * emit a character argument for the instruction
-      */
-    protected void emit(char arg) throws IOException
-      {
-        getOutputStream().write(ByteUtil.charToBytes(arg));
       }
   }

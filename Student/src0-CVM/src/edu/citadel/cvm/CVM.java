@@ -43,13 +43,13 @@ public class CVM
 
     /** default memory size for the virtual machine */
     private static final int DEFAULT_MEMORY_SIZE = 8*K;
-    
+
     /** scanner for handling integer input */
     private Scanner scanner;
 
     /** Reader for handling char input */
     private Reader reader;
-    
+
     /** PrintStream for handling output */
     private PrintStream out;
 
@@ -77,7 +77,7 @@ public class CVM
     /**
      * This method constructs a CPRL virtual machine, loads the byte code
      * from the specified file into memory, and runs the byte code.
-     * 
+     *
      * @throws FileNotFoundException if the file specified in args[0] can't be found.
      */
     public static void main(String[] args) throws FileNotFoundException
@@ -106,7 +106,7 @@ public class CVM
 
     /**
      * Construct a CPRL virtual machine with a given number of bytes of memory.
-     * 
+     *
      * @param numOfBytes the number of bytes in memory of the virtual machine
      */
     public CVM(int numOfBytes)
@@ -132,7 +132,7 @@ public class CVM
 
     /**
      * Loads the program into memory.
-     * 
+     *
      * @param codeFile the FileInputStream containing the object code
      */
     public void loadProgram(FileInputStream codeFile)
@@ -156,7 +156,7 @@ public class CVM
           }
       }
 
-    
+
     /**
      * Prints values of internal registers to standard output.
      */
@@ -185,7 +185,7 @@ public class CVM
                 out.print("PC ->");
             else
                 out.print("     ");
-            
+
             String memAddrStr = StringUtil.format(memAddr, FIELD_WIDTH);
             byte opCode = memory[memAddr];
 
@@ -232,7 +232,7 @@ public class CVM
                     ++memAddr;
                     out.println(" " + memory[memAddr++]);
                   break;
-                    
+
                 // opcodes with one int operand
                 case OpCode.ALLOC:
                 case OpCode.BR:
@@ -317,7 +317,7 @@ public class CVM
 
 
     /**
-     * Prompt user and wait for user to press the enter key. 
+     * Prompt user and wait for user to press the enter key.
      */
     private void pause()
       {
@@ -339,7 +339,7 @@ public class CVM
     public void run()
       {
         byte opCode;
-        
+
         running = true;
         pc = 0;
         while (running)
@@ -758,13 +758,13 @@ public class CVM
       {
         int opCodeAddr   = pc - 1;
         int displacement = fetchInt();
-        
+
         pushInt(bp);          // dynamic link
         pushInt(pc);          // return address
 
         // set bp to starting address of new frame
         bp = sp - Constants.BYTES_PER_FRAME + 1;
-        
+
         // set pc to first statement of called procedure
         pc = opCodeAddr + displacement;
       }
@@ -822,7 +822,7 @@ public class CVM
         try
           {
             int ch = reader.read();
-            
+
             if (ch == EOF)
                 error("Invalid input: EOF");
 
@@ -1082,6 +1082,17 @@ public class CVM
       }
 
 
+    private void returnInst()
+      {
+        int bpSave = bp;
+        int paramLength = fetchInt();
+
+        sp = bpSave - paramLength - 1;
+        bp = getInt(bpSave);
+        pc = getInt(bpSave + Constants.BYTES_PER_INTEGER);
+      }
+
+
     private void shiftLeft()
       {
         int  operand = popInt();
@@ -1089,7 +1100,7 @@ public class CVM
         // zero out left three bits of shiftAmount
         byte mask = 0x1F;   // = 00011111 in binary
         byte shiftAmount = (byte) (fetchByte() & mask);
-        
+
         pushInt(operand << shiftAmount);
       }
 
@@ -1101,19 +1112,8 @@ public class CVM
         // zero out left three bits of shiftAmount
         byte mask = 0x1F;   // = 00011111 in binary
         byte shiftAmount = (byte) (fetchByte() & mask);
-        
-        pushInt(operand >> shiftAmount);
-      }
 
-
-    private void returnInst()
-      {
-        int bpSave = bp;
-        int paramLength = fetchInt();
-
-        sp = bpSave - paramLength - 1;
-        bp = getInt(bpSave);
-        pc = getInt(bpSave + Constants.BYTES_PER_INTEGER);
+        pushInt(operand >> shiftAmount);   // ">>" is arithmetic shift in Java
       }
 
 
@@ -1172,7 +1172,7 @@ public class CVM
         int operand2 = popInt();
         int operand1 = popInt();
         int result = operand1 - operand2;
-        
+
         pushInt(result);
       }
 
