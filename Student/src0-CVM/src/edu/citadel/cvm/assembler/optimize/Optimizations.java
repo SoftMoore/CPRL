@@ -2,7 +2,6 @@ package edu.citadel.cvm.assembler.optimize;
 
 
 import java.util.List;
-import java.util.LinkedList;
 
 
 /**
@@ -21,14 +20,18 @@ public class Optimizations
 
     static
       {
-        optimizations = new LinkedList<>();
-        optimizations.add(new ConstFolding());
-        optimizations.add(new IncDec());
-        optimizations.add(new IncDec2());
-        optimizations.add(new ShiftLeftRight());
-        optimizations.add(new ShiftLeft());
-        optimizations.add(new BranchingReduction());
-        optimizations.add(new ConstNeg());
-        optimizations.add(new LoadSpecialConstants());
+        optimizations = List.of
+          (
+            new ConstFolding(),
+            new IncDec(),
+            new IncDec2(),
+            new ShiftLeftRight(),
+            new ShiftLeft(),
+            new BranchingReduction(),
+            new ConstNeg(),
+            new LoadSpecialConstants(),
+            new Allocate(),
+            new DeadCodeElimination()
+          );
       }
   }

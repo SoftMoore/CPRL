@@ -51,11 +51,9 @@ public class Program extends AST
      */
     public void optimize()
       {
-        List<Optimization> optimizations = Optimizations.getOptimizations();
-
         for (int n = 0; n < instructions.size(); ++n)
           {
-            for (Optimization optimization : optimizations)
+            for (Optimization optimization : Optimizations.getOptimizations())
                 optimization.optimize(instructions, n);
           }
       }
