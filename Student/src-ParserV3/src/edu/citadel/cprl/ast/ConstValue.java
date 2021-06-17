@@ -23,7 +23,7 @@ public class ConstValue extends Expression
 
 
     /**
-     * Construct a ConstValue from a literal token.
+     * Construct a constant value from a literal token.
      */
     public ConstValue(Token literal)
       {
@@ -33,7 +33,7 @@ public class ConstValue extends Expression
 
 
     /**
-     * Construct a ConstValue from a constant identifier
+     * Construct a constant value from a constant identifier
      * token and its corresponding constant declaration.
      */
     public ConstValue(Token identifier, ConstDecl decl)

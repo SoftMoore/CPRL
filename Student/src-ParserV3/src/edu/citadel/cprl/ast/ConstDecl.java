@@ -17,7 +17,7 @@ public class ConstDecl extends InitialDecl
 
 
     /**
-     * Construct a ConstDecl with its identifier, type, and literal.
+     * Construct a constant declaration with its identifier, type, and literal.
      */
     public ConstDecl(Token identifier, Type constType, Token literal)
       {

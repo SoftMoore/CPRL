@@ -17,8 +17,8 @@ public class ArrayTypeDecl extends InitialDecl
 
 
     /**
-     * Construct an ArrayTypeDecl with its identifier, element type, and number
-     * of elements.  Note that the index type is always Integer in CPRL.
+     * Construct an array type declaration with its identifier, element type, and
+     * number of elements.  Note that the index type is always Integer in CPRL.
      */
     public ArrayTypeDecl(Token typeId, Type elemType, ConstValue numElements)
       {

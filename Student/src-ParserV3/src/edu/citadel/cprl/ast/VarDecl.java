@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class VarDecl extends InitialDecl
   {
-    // the list of SingleVarDecls for the variable declaration
+    // the list of single variable declarations for the variable declaration
     private List<SingleVarDecl> singleVarDecls;
 
 
@@ -27,7 +27,7 @@ public class VarDecl extends InitialDecl
     public VarDecl(List<Token> identifiers, Type varType, ScopeLevel scopeLevel)
       {
         super(null, varType);
-        
+
         singleVarDecls = new ArrayList<>(identifiers.size());
         for (Token id : identifiers)
             singleVarDecls.add(new SingleVarDecl(id, varType, scopeLevel));
@@ -35,7 +35,7 @@ public class VarDecl extends InitialDecl
 
 
     /**
-     * Returns the list of SingleVarDecls for this variable declaration.
+     * Returns the list of single variable declarations for this variable declaration.
      */
     public List<SingleVarDecl> getSingleVarDecls()
       {

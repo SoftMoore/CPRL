@@ -12,7 +12,7 @@ import edu.citadel.cprl.Type;
 public abstract class InitialDecl extends Declaration
   {
     /**
-     * Construct an InitialDecl with its identifier and type.
+     * Construct an initial declaration with its identifier and type.
      */
     public InitialDecl(Token identifier, Type declType)
       {
@@ -25,6 +25,6 @@ public abstract class InitialDecl extends Declaration
       {
         assert getType() == Type.Boolean || getType() == Type.Integer
             || getType() == Type.Char    || getType() instanceof ArrayType :
-            "Invalid CPRL type in var declaration.";
+            "Invalid CPRL type.";
       }
   }

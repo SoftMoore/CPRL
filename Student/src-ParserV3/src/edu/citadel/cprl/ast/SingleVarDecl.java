@@ -22,7 +22,7 @@ public class SingleVarDecl extends InitialDecl implements NamedDecl
 
 
     /**
-     * Construct a SingleVarDecl with its identifier, type, and scope level.
+     * Construct a single variable declaration with its identifier, type, and scope level.
      */
     public SingleVarDecl(Token identifier, Type varType, ScopeLevel scopeLevel)
       {
