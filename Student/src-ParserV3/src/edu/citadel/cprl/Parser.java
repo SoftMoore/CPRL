@@ -591,7 +591,7 @@ public class Parser
      * Parse the following grammar rule:<br>
      * <code>expressions = expression ( "," expression )* .</code>
      *
-     * @return a list of Expressions.
+     * @return a list of expressions.
      */
     public List<Expression> parseExpressions() throws IOException
       {
