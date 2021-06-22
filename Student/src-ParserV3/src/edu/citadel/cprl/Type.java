@@ -89,14 +89,10 @@ public class Type
     /**
      * Returns the type of a literal symbol.  For example, if the
      * symbol is an intLiteral, then Type.Integer is returned.
-     *
-     * @throws IllegalArgumentException if the symbol is not a literal
+     * Returns UNKNOWN if the symbol is not a valid literal symbol.
      */
     public static Type getTypeOf(Symbol literal)
       {
-        if (!literal.isLiteral())
-            throw new IllegalArgumentException("Symbol is not a literal symbol");
-
         if (literal == Symbol.intLiteral)
             return Type.Integer;
         else if (literal == Symbol.stringLiteral)
