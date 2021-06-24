@@ -160,13 +160,8 @@ public class Scanner
      */
     public void advanceTo(Symbol symbol) throws IOException
       {
-        while (true)
-          {
-            if (getSymbol() == symbol || source.getChar() == Source.EOF)
-                return;
-            else
-                advance();
-          }
+        while (getSymbol() != symbol && source.getChar() != Source.EOF)
+            advance();
       }
 
 
@@ -176,13 +171,8 @@ public class Scanner
      */
     public void advanceTo(Symbol[] symbols) throws IOException
       {
-        while (true)
-          {
-            if (search(symbols, symbol) >= 0 || source.getChar() == Source.EOF)
-                return;
-            else
-                advance();
-          }
+        while (search(symbols, symbol) < 0 && source.getChar() != Source.EOF)
+            advance();
       }
 
 
