@@ -7,30 +7,32 @@ import java.io.IOException;
 
 
 /**
- * A scanner for SEL with two-symbol lookahead.
+ * A scanner for SEL with two-symbol lookahead. 
  */
 public class Scanner
   {
     private Source   source;
+
     private Symbol   symbol;         // current symbol
     private Position position;       // position of current symbol
     private String   text;           // text of current token (for identifiers and literals)
-    private Symbol   peekSymbol;     // second symbol
-    private Boolean  isPeekValid;    // true if peek symbol is valid
+
+    private Symbol   peekSymbol;     // lookahead symbol
+    private Position peekPosition;   // position of peekSymbol
+    private String   peekText;       // text for peekSymbol
 
     private StringBuilder scanBuffer;
 
 
     /**
-     * Initialize scanner with its associated source and advance
-     * to the first token.
+     * Initialize scanner with its associated source and advance to the first token.
      */
     public Scanner(Source source) throws IOException, InterpreterException
       {
         this.source  = source;
         scanBuffer   = new StringBuilder(100);
-        isPeekValid  = false;
-        advance();           // advance to the first token
+        advance();           // load current and peek values
+        advance();
       }
 
 
@@ -41,8 +43,8 @@ public class Scanner
       {
         return new Token(symbol, position, text);
       }
-
-
+    
+    
     /**
      * Returns a reference to the current symbol in the source.
      */
@@ -64,33 +66,9 @@ public class Scanner
     /**
      * @return the peekSymbol
      */
-    public Symbol getPeekSymbol() throws IOException, InterpreterException
+    public Symbol getPeekSymbol()
       {
-        advancePeek();
         return peekSymbol;
-      }
-
-
-    private void advancePeek() throws IOException, InterpreterException
-      {
-        if (!isPeekValid)
-          {
-            // save current values
-            Symbol savedSymbol   = symbol;
-            Position savedPosition = position;
-            String savedText     = text;
-
-            advance();
-
-            peekSymbol = symbol;
-
-            // restore saved current values
-            symbol = savedSymbol;
-            position = savedPosition;
-            text = savedText;
-
-            isPeekValid = true;
-          }
       }
 
 
@@ -99,93 +77,86 @@ public class Scanner
      */
     public void advance() throws IOException, InterpreterException
       {
-        if (isPeekValid)
+        // assign peek values to current values
+        symbol   = peekSymbol;
+        position = peekPosition;
+        text     = peekText;
+
+        skipWhiteSpace();
+            
+        // currently at starting character of the next token
+        peekPosition = source.getCharPosition();
+        text = "";
+
+        if (source.getChar() == Source.EOF)
           {
-            // peekSymbol was previously used as the second lookahead
-            // symbol and is now valid as the current symbol
-            symbol      = peekSymbol;
-            isPeekValid = false;
+           // set peekSymbol but don't advance
+           peekSymbol = Symbol.EOF;
+          }
+        else if (Character.isLetter((char) source.getChar()))
+          {
+            peekText = scanIdentifier();
+            peekSymbol = Symbol.identifier;
+          }
+        else if (Character.isDigit((char) source.getChar()))
+          {
+            peekText = scanNumericLiteral();
+            peekSymbol = Symbol.numericLiteral;
           }
         else
           {
-            skipWhiteSpace();
-
-            // currently at starting character of the next token
-            position = source.getCharPosition();
-            text = "";
-
-            if (source.getChar() == Source.EOF)
+            switch((char) source.getChar())
               {
-                // set symbol but don't advance
-                symbol = Symbol.EOF;
-              }
-            else if (Character.isLetter((char) source.getChar()))
-              {
-                text = scanIdentifier();
-                symbol = Symbol.identifier;
-              }
-            else if (Character.isDigit((char) source.getChar()))
-              {
-                text = scanNumericLiteral();
-                symbol = Symbol.numericLiteral;
-              }
-            else
-              {
-                switch((char) source.getChar())
-                  {
-                    case '\r':          // assume Windows style for end-of-line
-                        source.advance();
-                        if ((char) source.getChar() == '\n')
-                          {
-                            symbol = Symbol.EOL;
-                            source.advance();
-                          }
-                        else
-                          {
-                            error("Invalid end-of-line character.");
-                          }
-                        break;
-                    case '\n':
-                        symbol = Symbol.EOL;
-                        source.advance();
-                        break;
-                    case '+':
-                        symbol = Symbol.plus;
-                        source.advance();
-                        break;
-                    case '-':
-                        symbol = Symbol.minus;
-                        source.advance();
-                        break;
-                    case '*':
-                        symbol = Symbol.times;
-                        source.advance();
-                        break;
-                    case '/':
-                        symbol = Symbol.divide;
-                        source.advance();
-                        break;
-                    case '(':
-                        symbol = Symbol.leftParen;
-                        source.advance();
-                        break;
-                    case ')':
-                        symbol = Symbol.rightParen;
-                        source.advance();
-                        break;
-                    case '.':
-                        symbol = Symbol.dot;
-                        source.advance();
-                        break;
-                    case '=':
-                        symbol = Symbol.assign;
-                        source.advance();
-                        break;
-                    default:           // error:  invalid character
+                case '\r':          // assume Windows style for end-of-line
+                    source.advance();
+                    if ((char) source.getChar() == '\n')
                       {
-                        String errorMsg = "Invalid character \'" + (char) source.getChar() + "\'";
-                        error(errorMsg);
+                    	peekSymbol = Symbol.EOL;
+                        source.advance();
                       }
+                    else
+                        error("Invalid end-of-line character.");
+                    break;
+                case '\n':
+                	peekSymbol = Symbol.EOL;
+                    source.advance();
+                    break;
+                case '+':
+                	peekSymbol = Symbol.plus;
+                    source.advance();
+                    break;
+                case '-':
+                	peekSymbol = Symbol.minus;
+                    source.advance();
+                    break;
+                case '*':
+                	peekSymbol = Symbol.times;
+                    source.advance();
+                    break;
+                case '/':
+                	peekSymbol = Symbol.divide;
+                    source.advance();
+                    break;
+                case '(':
+                	peekSymbol = Symbol.leftParen;
+                    source.advance();
+                    break;
+                case ')':
+                	peekSymbol = Symbol.rightParen;
+                    source.advance();
+                    break;
+                case '.':
+                	peekSymbol = Symbol.dot;
+                    source.advance();
+                    break;
+                case '=':
+                	peekSymbol = Symbol.assign;
+                    source.advance();
+                    break;
+                default:
+                  {
+                    String errorMsg = "Invalid character \'" + (char) source.getChar() + "\'";
+                    error(errorMsg);
                   }
               }
           }
@@ -252,7 +223,7 @@ public class Scanner
             source.advance();
           }
         while (Character.isDigit((char) source.getChar()));
-
+        
         if ((char) source.getChar() == '.')
           {
             scanBuffer.append((char) source.getChar());
@@ -260,7 +231,7 @@ public class Scanner
 
             if (!Character.isDigit((char) source.getChar()))
                 error("Invalid numeric literal");
-
+            
             do
               {
                 scanBuffer.append((char) source.getChar());
@@ -279,8 +250,8 @@ public class Scanner
     private void error(String message) throws InterpreterException
       {
         Position position = source.getCharPosition();
-        String errorMsg = "*** Lexical error detected near position "
-                         + position + ":\n    " + message;
+        String   errorMsg = "*** Lexical error detected near position "
+                          + position + ":\n    " + message;
         throw new InterpreterException(errorMsg);
       }
   }
