@@ -7,7 +7,6 @@ import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Token;
 
 import java.util.List;
-import java.util.Iterator;
 
 
 /**
@@ -24,9 +23,7 @@ public class FunctionCall extends Expression
      * Construct a function call with the function identifier (name), the
      * list of actual parameters, and a reference to the function declaration.
      */
-    public FunctionCall(Token funcId,
-                        List<Expression> actualParams,
-                        FunctionDecl funcDecl)
+    public FunctionCall(Token funcId, List<Expression> actualParams, FunctionDecl funcDecl)
       {
         super(funcDecl.getType(), funcId.getPosition());
 
@@ -52,13 +49,10 @@ public class FunctionCall extends Expression
                 expr.checkConstraints();
 
             // check that parameter types match
-            Iterator<Expression>    iterActual = actualParams.iterator();
-            Iterator<ParameterDecl> iterFormal = formalParams.iterator();
-
-            while (iterActual.hasNext())
+            for (int i = 0;  i < actualParams.size();  ++i)
               {
-                Expression    expr  = iterActual.next();
-                ParameterDecl param = iterFormal.next();
+                Expression    expr  = actualParams.get(i);
+                ParameterDecl param = formalParams.get(i);
 
                 if (!matchTypes(expr.getType(), param.getType()))
                   {
