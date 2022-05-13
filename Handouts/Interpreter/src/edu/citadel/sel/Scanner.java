@@ -7,7 +7,7 @@ import java.io.IOException;
 
 
 /**
- * A scanner for SEL with two-symbol lookahead. 
+ * A scanner for SEL with two-symbol lookahead.
  */
 public class Scanner
   {
@@ -43,8 +43,8 @@ public class Scanner
       {
         return new Token(symbol, position, text);
       }
-    
-    
+
+
     /**
      * Returns a reference to the current symbol in the source.
      */
@@ -83,10 +83,10 @@ public class Scanner
         text     = peekText;
 
         skipWhiteSpace();
-            
+
         // currently at starting character of the next token
         peekPosition = source.getCharPosition();
-        text = "";
+        peekText = "";
 
         if (source.getChar() == Source.EOF)
           {
@@ -111,46 +111,46 @@ public class Scanner
                     source.advance();
                     if ((char) source.getChar() == '\n')
                       {
-                    	peekSymbol = Symbol.EOL;
+                        peekSymbol = Symbol.EOL;
                         source.advance();
                       }
                     else
                         error("Invalid end-of-line character.");
                     break;
                 case '\n':
-                	peekSymbol = Symbol.EOL;
+                    peekSymbol = Symbol.EOL;
                     source.advance();
                     break;
                 case '+':
-                	peekSymbol = Symbol.plus;
+                    peekSymbol = Symbol.plus;
                     source.advance();
                     break;
                 case '-':
-                	peekSymbol = Symbol.minus;
+                    peekSymbol = Symbol.minus;
                     source.advance();
                     break;
                 case '*':
-                	peekSymbol = Symbol.times;
+                    peekSymbol = Symbol.times;
                     source.advance();
                     break;
                 case '/':
-                	peekSymbol = Symbol.divide;
+                    peekSymbol = Symbol.divide;
                     source.advance();
                     break;
                 case '(':
-                	peekSymbol = Symbol.leftParen;
+                    peekSymbol = Symbol.leftParen;
                     source.advance();
                     break;
                 case ')':
-                	peekSymbol = Symbol.rightParen;
+                    peekSymbol = Symbol.rightParen;
                     source.advance();
                     break;
                 case '.':
-                	peekSymbol = Symbol.dot;
+                    peekSymbol = Symbol.dot;
                     source.advance();
                     break;
                 case '=':
-                	peekSymbol = Symbol.assign;
+                    peekSymbol = Symbol.assign;
                     source.advance();
                     break;
                 default:
@@ -223,7 +223,7 @@ public class Scanner
             source.advance();
           }
         while (Character.isDigit((char) source.getChar()));
-        
+
         if ((char) source.getChar() == '.')
           {
             scanBuffer.append((char) source.getChar());
@@ -231,7 +231,7 @@ public class Scanner
 
             if (!Character.isDigit((char) source.getChar()))
                 error("Invalid numeric literal");
-            
+
             do
               {
                 scanBuffer.append((char) source.getChar());

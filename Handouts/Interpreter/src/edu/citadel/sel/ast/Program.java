@@ -11,10 +11,10 @@ import java.util.List;
 public class Program implements Expression
   {
     private List<Expression> expressions;
-    
-    
+
+
     /**
-     * Construct a program with a list of expressions. 
+     * Construct a program with a list of expressions.
      */
     public Program(List<Expression> expressions)
       {
@@ -25,9 +25,11 @@ public class Program implements Expression
     @Override
     public double interpret(Context context)
       {
-        for (Expression expr : expressions)
-            expr.interpret(context);
+        // interpret all but the last expression
+        for (int i = 0; i < expressions.size() - 1; ++i)
+            expressions.get(i).interpret(context);
 
+        // now interpret the last one
         Expression lastExpr = expressions.get(expressions.size() - 1);
         return lastExpr.interpret(context);
       }

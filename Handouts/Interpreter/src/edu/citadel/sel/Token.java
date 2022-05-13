@@ -22,7 +22,7 @@ public class Token extends AbstractToken<Symbol>
 
 
     /**
-     * Constructs a new Token with symbol = Symbol.unknown.
+     * Construct a new Token with symbol = Symbol.unknown.
      * Position and text are initialized to null.
      */
     public Token()

@@ -5,10 +5,7 @@ import edu.citadel.compiler.Source;
 import edu.citadel.sel.ast.Context;
 import edu.citadel.sel.ast.Program;
 
-import java.io.Console;
-import java.io.FileReader;
-import java.io.StringReader;
-import java.io.IOException;
+import java.io.*;
 
 
 public class Interpreter
@@ -35,14 +32,16 @@ public class Interpreter
             // run interactive interpreter
             String exprStr   = "";
             double exprValue = 0.0;
-            Console console = System.console();
-            
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
+
+
             System.out.println("Starting SEL interpreter.  Enter \":q\" to quit.");
 
             while (exprStr != null && !exprStr.equals(":q"))
               {
                 prompt();
-                exprStr = console.readLine();
+                exprStr = br.readLine();
                 if (exprStr != null && !exprStr.equals(":q"))
                   {
                     exprValue = interpret(exprStr);
@@ -60,7 +59,7 @@ public class Interpreter
       {
         System.out.print("SEL> ");
       }
-  
+
 
     private static double interpret(String expression)
         throws IOException, InterpreterException
