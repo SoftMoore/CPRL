@@ -29,7 +29,7 @@ While it is possible to place all classes in one Eclipse project or IntelliJ IDE
 ````java
    module edu.citadel.cvm
      {
-       exports edu.citadel.cvn;
+       exports edu.citadel.cvm;
        exports edu.citadel.cvm.assembler;
        exports edu.citadel.cvm.assembler.ast;
        requires transitive edu.citadel.compiler;
