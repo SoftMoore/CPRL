@@ -27,7 +27,7 @@ public class Assembler
     private File sourceFile;
 
 
-    public static void main(String args[]) throws Exception
+    public static void main(String[] args) throws Exception
       {
         // check arguments
         if (args.length == 0 || args.length > 2)

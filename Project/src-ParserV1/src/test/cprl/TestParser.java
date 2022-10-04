@@ -20,7 +20,7 @@ public class TestParser
     private static final int    FAILURE = -1;
 
 
-    public static void main(String args[]) throws Exception
+    public static void main(String[] args) throws Exception
       {
         // check arguments
         if (args.length != 1)
